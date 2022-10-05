@@ -8,7 +8,7 @@
    <head>
       <!-- css link -->
       <link rel="stylesheet" href="css/bootstrap.min.css">
-      <link rel="stylesheet" href="css/main2.css">
+      <link rel="stylesheet" href="css/main1.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="css/style2.css" type="text/css" media="screen">
 
@@ -195,7 +195,7 @@
                                        echo "<img src='admin/upload/product/".$row['image']."'>";
                                        // echo "<img src='../PHOTO/product/mini_dress/5/1.jpg' alt='img' class='image-pr' style='width:100%'>";
                                        echo "<div class='middle-pr'>";
-                                               echo"<p><a href='/HTML/productDetail.php?id=".$row['id']."'><button>Shop Now</button></a></p>";
+                                               echo"<p><a href='productDetail.php?id=".$row['id']."'><button>Shop Now</button></a></p>";
                                        echo"</div>";
                                        echo"<h2 class='dress-code'>".$row['name']."</h2>";
                                        // echo"<p>".$row['description']."</p>";
