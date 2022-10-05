@@ -11,7 +11,7 @@ session_start();
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>| MEDI LANKA |</title>
+        <title>| Zaara.lk |</title>
          <!-- css link -->
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -22,10 +22,53 @@ session_start();
         <script src="js/jquery.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      
         
 
     </head>
     <body>
+        <?php
+        if(isset($_POST['addproduct'])){
+       // echo "Form submitted";
+       //getting the data
+       $pname=$_POST['pname'];
+       $category=$_POST['category'];
+       $price=$_POST['price'];
+       $filename=$_FILES['product_image']['name'];
+       $imageFileType=pathinfo($filename,PATHINFO_EXTENSION);
+       $extensions_arr = array("jpg","jpeg","png","gif");
+       $quantity=$_POST['quantity'];
+       $description=$_POST['description'];
+       $image=$_FILES['product_image']['name'];
+
+       move_uploaded_file($_FILES["product_image"]["tmp_name"],"upload/product/".$_FILES["product_image"]["name"]);
+        
+      
+          $sql="INSERT INTO product(name,category,price,description,quantity,image)VALUES('$pname','$category','$price','$description',$quantity,'$image')";
+            $res=mysqli_query($conn,$sql);
+                if($res){
+                 
+                    echo  "<script type=\"text/javascript\">
+                    Swal.fire('Added!!',
+                          'Product is added to the inventory',
+                          'success'
+                    )
+                  </script>";
+                }
+                else{
+                  echo "<script>
+                    swal({
+                    title: 'Error',
+                    text: 'Data didnot add!',
+                    icon: 'warning',
+                    button: 'Ok',
+                    });
+                  </script>";
+                }
+                
+       }
+   ?>
         <br><br>
         <?php include('navbar/navigationbarProduct.php') ?>
         <div class="container">
@@ -33,12 +76,12 @@ session_start();
             <br>
             <div class="row">
                 <div class="col-md-8 col-lg-8 mb-5">
-                    <form id="AddDoctorForm" class="needs-validation p-5"  action="doctorRegistration.php" method="POST" enctype="multipart/form-data" novalidate>
+                    <form id="AddDoctorForm" class="needs-validation p-5"   method="POST" enctype="multipart/form-data" novalidate>
                         <h3 class="text text-primary" style="text-align: left">Add a Product</h3><br>
                         <div class="form-row">
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-8 mb-3">
                                 <label for="validationCustom01"><strong>Product Name</strong></label>
-                                <input type="text" class="form-control" name="pname" id="validationCustom01" placeholder="First name" value="" required>
+                                <input type="text" class="form-control" name="pname" id="validationCustom01" placeholder="Product Name" value="" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -47,7 +90,7 @@ session_start();
                             <div class="col-md-4 mb-3">
                                 <label for="validationCustom02"><strong>Product Category</strong></label>
                                 <div class="input-group">
-                                    <select class="form-control" name="specialty" id="exampleFormControlSelect1" id="validationCustom03" >
+                                    <select class="form-control" name="category" id="exampleFormControlSelect1" id="validationCustom03" placeholder="Product Categor">
                                         <?php
                                             $res=mysqli_query($conn,"SELECT * FROM category");
                                             while($row=mysqli_fetch_assoc($res)){
@@ -66,7 +109,7 @@ session_start();
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
                                 <label for="inputEmail4">Price</label>
-                                <input type="text" class="form-control" name="price" id="price" placeholder="Email" required>
+                                <input type="text" class="form-control" name="price" id="price" placeholder="Price" required>
                                 <div class="invalid-feedback">
                                     Please provide a Price.
                                 </div>
@@ -80,7 +123,7 @@ session_start();
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="inputPassword4">Product quantity</label>
-                                <input type="password" class="form-control" name="quantity" id="quantity" placeholder="Password" data-toggle="password" required>
+                                <input type="text" class="form-control" name="quantity" id="quantity" placeholder="Product quantity" data-toggle="password" required>
                                 <div class="invalid-feedback">
                                     Please provide a quantity
                                 </div>
@@ -90,7 +133,7 @@ session_start();
                         <div class="form-row">
                             <div class="col-md-12">
                                 <label for="validationCustom03"><strong>Product Description</strong></label>
-                                <input type="text" class="form-control" name="description" id="description" placeholder="Address Line 1" required>
+                                <input type="text" class="form-control" name="description" id="description" placeholder="Product Description" required>
                                 <div class="invalid-feedback">
                                     Please provide a Description.
                                 </div>
@@ -98,7 +141,7 @@ session_start();
                         </div>
                        
                         <br>
-                        <button class="btn btn-primary" type="submit" name="submit">Save Details</button>
+                        <button class="btn btn-primary" type="submit" name="addproduct">Save Details</button>
                     </form>                   
                 </div>
                 <div class="col-md-4 col-lg-4">
@@ -128,7 +171,6 @@ session_start();
                     }, false);
                 });
             }, false);
-        })();
     </script>
     <script type="text/javascript">
         $("#password").password('toggle');

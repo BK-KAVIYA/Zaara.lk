@@ -55,9 +55,9 @@ include('../db.php');
     </section>
   <div class="flex-column">
     <img class="justify-content-center" src="img/avatar.png">
-    <h5 class="ml-3">
+    <h5 class="mt-2">
       <?php session_start();
-        echo $_SESSION['uname'];
+        echo $_SESSION['email'];
       ?>
   </h5>
   </div>

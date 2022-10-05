@@ -69,7 +69,7 @@ session_start();
                                         <td><?php echo $row["quantity"]; ?></td>
                                         <td><img src='upload/product/<?php echo $row["image"]; ?>' width="30px"></td>
                                         <td>
-                                            <a href="editDoctor.php?id=<?php echo $row['id'] ?>"type="button" class="btn btn-success btn-sm">Edit</a>
+                                            <a href="editProduct.php?id=<?php echo $row['id'] ?>"type="button" class="btn btn-success btn-sm">Edit</a>
                                             <a href="deletDoctor.php?id=<?php echo $row['id'] ?>" type="button" class="btn btn-danger btn-sm">Delete</a>
                                         </td>
 
