@@ -46,8 +46,9 @@
 				$sql="SELECT user_name FROM customer WHERE email=\"".$email."\";";
 				$q=mysqli_query($conn,$sql);
 	 			$row=mysqli_fetch_array($q);
+            $_SESSION['user_Id']=$row['id'];
 				$_SESSION['email']=$row['user_name'];
-				$_SESSION['status']=1;
+				$_SESSION['status']=0;
 				header("location:../home.php");
 
 

@@ -51,9 +51,10 @@
                   <div class="col-md-12 col-lg-8 mt-3">
                      <div class="items">
                         <?php
+
                            $tot=0;
-                            if($_SESSION['user_Id']!=0){
-                              $sql = "SELECT * FROM shopping_cart where customer_id=".$_SESSION['user_Id'];
+                            if($_SESSION['uid']!=0){
+                              $sql = "SELECT * FROM shopping_cart where customer_id=".$_SESSION['uid'];
                               $result = mysqli_query($conn, $sql);
                                foreach($result as $key=>$value){
                                  $sql2 = "SELECT * FROM product where id=".$value['product_id'];
@@ -77,10 +78,7 @@
                                              </div>
                                           </div>
                                        </div>
-                                       <div class="col-md-4 quantity">
-                                          <label for="quantity">Quantity:</label>
-                                          <input id="qty" type="number" value ="1" name="qty"class="form-control quantity-input" ONCLICK="totalPrice()">
-                                       </div>
+
                                        <div class="col-md-3 price">
                                           <span name="uprice"><label for="price">LKR</label><input class="border-0" type="text" id="price" name="price" value="<?php echo $value1['price']?>" disabled></span>
                                        </div>

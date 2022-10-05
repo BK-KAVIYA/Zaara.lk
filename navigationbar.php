@@ -1,6 +1,9 @@
 <?php
    include("db.php");
-          // session_start();
+   if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }
        
 ?>
 <!DOCTYPE html>
@@ -45,7 +48,7 @@
                      <a class="nav-link text-uppercase w3-bar-item w3-button w3-padding-large w3-hide-small text-white" name="category">Category</a>
                      <div class="dropdown-content">
                         <a href="#">Max</a>
-                        <a href="#">Min</a>
+                        <a href="mini_dress.php">Min</a>
                         <a href="#">Bags</a>
                      </div>
                      </div>
@@ -69,8 +72,8 @@
                            </button>
                      <i class="text-light fa-solid fa-cart-shopping  ml-2 mr-1 "></i>
                         <form method="post">
-                           <button class="bg-transparent text-light border-0" name="check1">
-                              Cart
+                        <a href="cart.php"><button class="bg-transparent text-light border-0" name="check1">
+                              Cart</a>
                            </button>
                         </form>
                      <i class="text-light fa-solid fa-right-from-bracket  ml-2 mr-1"></i><a href="login/index.php"><p class="text-light">Login/Sing UP</p></a>
@@ -95,7 +98,7 @@
             myFunction();
           }
            function myFunction() {
-            if (!isset($_SESSION['status']) && $_SESSION['status']==1){
+            if (isset($_SESSION['status'])){
                echo $_SESSION['status'];
                //header("location:channel.php");
              }else{
