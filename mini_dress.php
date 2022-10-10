@@ -42,11 +42,11 @@
                         <img class="pic-2" src="admin/upload/product/<?php echo $row['image']; ?>">
                     </a>
                     <ul class="social">
-                        <li><a href="productDetail.php?id" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
+                        <li><a href="productDetail.php?id=<?php echo $row['id']; ?>" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
                         <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
                         <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
                     </ul>
-                    <a class="add-to-cart" href="">Add to cart</a>
+                    <a class="add-to-cart" href="add_cart.php">Add to cart</a>
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#"><?php echo $row['name']; ?></a></h3>

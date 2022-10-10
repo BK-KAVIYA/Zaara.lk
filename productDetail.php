@@ -97,7 +97,7 @@
 						<div class="action">
                             <input type="number" id="quantity" name="quantity" min="1" max="10"> <br>
                             
-							<button class="add-to-cart btn btn-default bg-danger text-white" type="button">add to cart</button>
+							<a href="cart.php"><button class="add-to-cart btn btn-default bg-danger text-white" type="button">add to cart</button></a>
 							
 						</div>
 					</div>
