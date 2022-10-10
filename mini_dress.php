@@ -42,7 +42,7 @@
                         <img class="pic-2" src="admin/upload/product/<?php echo $row['image']; ?>">
                     </a>
                     <ul class="social">
-                        <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
+                        <li><a href="productDetail.php?id" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
                         <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
                         <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
                     </ul>
@@ -52,8 +52,10 @@
                     <h3 class="title"><a href="#"><?php echo $row['name']; ?></a></h3>
                     <span class="price"><?php echo $row['price']; ?></span>
                 </div>
+           
             </div>
         </div>  
+       
 
         <?php
                 }
