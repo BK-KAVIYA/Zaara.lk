@@ -2,7 +2,11 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
+<?php
+   include("db.php");
+   session_start();
+   
+   ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,6 +20,7 @@
   </head>
 
   <body>
+
   <div class="bg-dark">
 	<?php
    include("navigationbar.php");
@@ -25,20 +30,15 @@
 
 	<form action="add_cart.php" method="post">
             <?php
-               //require('connection.php');
-
-			   
-      
-
                
-                   if(isset($_GET['49'])){
-                     $conn=mysqli_connect("localhost","root","","zaraa");
-                     $pid=$_GET['49'];
+                   if(isset($_GET['id'])){
+                     $pid=$_GET['id'];
                      $sql="SELECT * FROM product WHERE id='$pid'";
                      $res=mysqli_query($conn,$sql);
                
                      $row=mysqli_fetch_assoc($res);
-				   }
+
+				   	}
 
 					 ?>
 	
@@ -48,23 +48,32 @@
 			<div class="container-fliud">
 				<div class="wrapper row">
 					<div class="preview col-md-6">
-						
+					<?php
+								$sql1="SELECT * FROM product_image WHERE product_id=$pid";
+								$res1=mysqli_query($conn,$sql1);
+								$results = array();
+								while($row1=mysqli_fetch_assoc($res1)){ 
+									array_push($results,$row1['image_url']);
+
+								}
+								?>
+								
 						<div class="preview-pic tab-content">
-						  <div class="tab-pane active" id="pic-1"><img src="PHOTO/product/maxi_dress/1/2.jpg" /></div>
-						  <div class="tab-pane" id="pic-2"><img src="PHOTO/product/maxi_dress/1/3.jpg" /></div>
-						  <div class="tab-pane" id="pic-3"><img src="PHOTO/product/maxi_dress/1/4.jpg" /></div>
+							
+						  <div class="tab-pane active" id="pic-1"><img src="admin/upload/mini_dress/<?php echo $results[0]; ?>" /></div>
+						  <div class="tab-pane" id="pic-2"><img src="admin/upload/mini_dress/<?php echo $results[1]; ?>" /></div>
+						  <div class="tab-pane" id="pic-3"><img src="admin/upload/mini_dress/<?php echo $results[2]; ?>" /></div>
 						  
 						</div>
 						<ul class="preview-thumbnail nav nav-tabs">
-						  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="PHOTO/product/maxi_dress/1/2.jpg" /></a></li>
-						  <li><a data-target="#pic-2" data-toggle="tab"><img src="PHOTO/product/maxi_dress/1/3.jpg" /></a></li>
-						  <li><a data-target="#pic-3" data-toggle="tab"><img src="PHOTO/product/maxi_dress/1/4.jpg" /></a></li>
+						  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="admin/upload/mini_dress/<?php echo $results[0]; ?>" /></a></li>
+						  <li><a data-target="#pic-2" data-toggle="tab"><img src="admin/upload/mini_dress/<?php echo $results[1]; ?>" /></a></li>
+						  <li><a data-target="#pic-3" data-toggle="tab"><img src="admin/upload/mini_dress/<?php echo $results[2]; ?>" /></a></li>
 				
 						</ul>
-						
 					</div>
 					<div class="details col-md-6">
-						<h3 class="product-title">men's shoes fashion</h3>
+						<h3 class="product-title"><?php echo $row['name']; ?></h3>
 						<div class="rating">
 							<div class="stars">
 								<span class="fa fa-star checked"></span>
@@ -75,8 +84,8 @@
 							</div>
 							<span class="review-no">41 reviews</span>
 						</div>
-						<p class="product-description-p">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
-						<h4 class="price">current price: <span>$180</span></h4>
+						<p class="product-description-p"><?php echo $row['description']; ?></p>
+						<h4 class="price">current price: <span><?php echo $row['price']; ?></span></h4>
 						<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
 						<h5 class="sizes">sizes:
                         <button type="button" class="btn btn-dark">S</button>
@@ -88,7 +97,7 @@
 						<div class="action">
                             <input type="number" id="quantity" name="quantity" min="1" max="10"> <br>
                             
-							<button class="add-to-cart btn btn-default bg-danger text-white" type="button">add to cart</button>
+							<a href="cart.php"><button class="add-to-cart btn btn-default bg-danger text-white" type="button">add to cart</button></a>
 							
 						</div>
 					</div>

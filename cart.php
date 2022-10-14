@@ -53,6 +53,7 @@
                         <?php
 
                            $tot=0;
+                           if(isset($_SESSION['uid'])){ 
                             if($_SESSION['uid']!=0){
                               $sql = "SELECT * FROM shopping_cart where customer_id=".$_SESSION['uid'];
                               $result = mysqli_query($conn, $sql);
@@ -96,6 +97,7 @@
                         <?php 
                            }
                            }
+                        }
                            }else{ 
                            
                            ?>      

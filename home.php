@@ -195,7 +195,7 @@
                                        echo "<img src='admin/upload/product/".$row['image']."'>";
                                        // echo "<img src='../PHOTO/product/mini_dress/5/1.jpg' alt='img' class='image-pr' style='width:100%'>";
                                        echo "<div class='middle-pr'>";
-                                               echo"<p><a href='/HTML/productDetail.php?id=".$row['id']."'><button>Shop Now</button></a></p>";
+                                               echo"<p><a href='productDetail.php?id=".$row['id']."'><button>Shop Now</button></a></p>";
                                        echo"</div>";
                                        echo"<h2 class='dress-code'>".$row['name']."</h2>";
                                        // echo"<p>".$row['description']."</p>";

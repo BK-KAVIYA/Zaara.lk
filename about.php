@@ -118,7 +118,7 @@
    <body >
       <?php
          //database connection
-         $conn = new mysqli('localhost','root','','echannelling1');
+         $conn = new mysqli('localhost','root','','zara');
          
          if($conn->connect_error){
              die('Could not connect:'.$conn->connect_error);
