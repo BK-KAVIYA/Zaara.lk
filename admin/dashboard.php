@@ -93,17 +93,23 @@
 
                     <a href="viewCustomers.php" class="nav__link" target="myFrame">
                         <i class='bx bx-user nav__icon' ></i>
-                        <span class="nav__name">Manage Inventory</span>
+                        <span class="nav__name">Customer Information</span>
                     </a>
 
-                    <a href="viewProduct.php" class="nav__link" target="myFrame">
+                    <a href="addAdmin.php" class="nav__link" target="myFrame">
                         <i class='bx bx-plus-medical nav__icon' ></i>
-                        <span class="nav__name">Manage Inventory</span>
+                        <span class="nav__name">Add Admin</span>
                     </a>
-                    <a href="My_account.php" class="nav__link" target="myFrame">
+                    <a href="addProduct.php" class="nav__link" target="myFrame">
                         <i class='bx bx-brightness nav__icon'  target="myFrame"></i>
-                        <span class="nav__name">Setting</span>
+                        <span class="nav__name">Add product</span>
                     </a>
+
+                    <a href="viewProduct.php" class="nav__link active" target="myFrame"> 
+                    <i class='bx bx-grid-alt nav__icon' ></i>
+                        <span class="nav__name">View product</span>
+                    </a>
+
                     <a href="feedback.php" class="nav__link" target="myFrame">
                         <i class='bx bx-edit nav__icon' ></i>
                         <span class="nav__name">Feedback</span>
