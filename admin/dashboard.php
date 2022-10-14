@@ -91,7 +91,7 @@
                         <span class="nav__name">Admin Dashboard</span>
                     </a>
 
-                    <a href="viewProduct.php" class="nav__link" target="myFrame">
+                    <a href="viewCustomers.php" class="nav__link" target="myFrame">
                         <i class='bx bx-user nav__icon' ></i>
                         <span class="nav__name">Manage Inventory</span>
                     </a>
