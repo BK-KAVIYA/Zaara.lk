@@ -58,6 +58,8 @@
                 header("location:../home.php");
            }
             ?>
+
+            
     <header class="header" id="header">
         <div class="header__toggle">
             <i class='bx bx-menu' id="header-toggle"></i>

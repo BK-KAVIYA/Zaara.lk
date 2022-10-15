@@ -23,6 +23,32 @@ session_start();
 
     </head>
     <body class="ml-5">
+
+<?php
+    //delete record
+         if(isset($_POST['delete_btn']))
+         {
+             $id = $_POST['delete_id'];
+         
+             $query = "DELETE FROM admin WHERE id='$id' ";
+             $query_run = mysqli_query($conn, $query);
+         
+             if($query_run)
+             {
+                 $_SESSION['status'] = "Your Data is Deleted";
+                 $_SESSION['status_code'] = "success";
+                 header('Location: add_admin.php'); 
+             }
+             else
+             {
+                 $_SESSION['status'] = "Your Data is NOT DELETED";       
+                 $_SESSION['status_code'] = "error";
+                 header('Location: add_admin.php'); 
+             }    
+         }
+
+         ?>
+         
         <br><br>
         <div  >
             <?php include('navbar/navigationbarProduct.php') ?>
@@ -68,8 +94,8 @@ session_start();
                                         <td><?php echo $row["address"]; ?></td>
                                         
                                         <td>
-                                            <a href="editAdmin.php?id=<?php echo $row['id'] ?>"type="button" class="btn btn-success btn-sm">Edit</a>
-                                            <a href="deletDoctor.php?id=<?php echo $row['id'] ?>" type="button" class="btn btn-danger btn-sm">Delete</a>
+                                            <a href="editCustomer.php?id=<?php echo $row['id'] ?>"type="button" class="btn btn-success btn-sm">Edit</a>
+                                            <a href="deleteCustomer.php?id=<?php echo $row['id'] ?>" type="button" class="btn btn-danger btn-sm">Delete</a>
                                         </td>
 
                                     </tr>
