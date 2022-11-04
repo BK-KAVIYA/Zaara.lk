@@ -16,10 +16,63 @@
     <title>eCommerce Product Detail</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="css/product_css.css">
+	<!--Alert-->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   </head>
 
   <body>
+
+  <?php
+ 
+
+ if(isset($_POST['add_product'])){
+	if(isset($_SESSION['uid'])){
+   
+	// echo "Form submitted";
+	//getting the data
+	$pid=$_GET['id'];
+	$uid=$_SESSION['uid'];
+	$date="2022-10-14 13.02";
+	
+
+	   $sql="INSERT INTO shopping_cart(customer_id,product_id,date_and_time) VALUES('$uid','$pid','$date')";
+		 $res=mysqli_query($conn,$sql);
+
+			 if($res){
+			  
+				 echo  "<script type=\"text/javascript\">
+				 Swal.fire('Added!!',
+					   'Product is added to the cart',
+					   'success'
+				 )
+			   </script>";
+			   header("location:cart.php");
+			 }
+			 else{
+			   echo "<script>
+				 swal({
+				 title: 'Error',
+				 text: 'product didnot add!',
+				 icon: 'warning',
+				 button: 'Ok',
+				 });
+			   </script>";
+			 }
+			 
+	}else{
+		echo  "<script type=\"text/javascript\">
+                         Swal.fire('Login First!!',
+                               'To Use Fhis Feature Please Login',
+                               'info'
+                         )
+                       </script>";
+
+	}
+
+ }
+
+  ?>
 
   <div class="bg-dark">
 	<?php
@@ -28,7 +81,7 @@
 	</div>
 
 
-	<form action="add_cart.php" method="post">
+	<form  method="post">
             <?php
                
                    if(isset($_GET['id'])){
@@ -97,7 +150,7 @@
 						<div class="action">
                             <input type="number" id="quantity" name="quantity" min="1" max="10"> <br>
                             
-							<a href="cart.php"><button class="add-to-cart btn btn-default bg-danger text-white" type="button">add to cart</button></a>
+							<form method="post"><input class="add-to-cart btn btn-default bg-danger text-white" type="submit" value="Add to cart" name="add_product"></form>
 							
 						</div>
 					</div>

@@ -57,7 +57,7 @@ include('../db.php');
     <img class="justify-content-center" src="img/avatar.png">
     <h5 class="mt-2">
       <?php session_start();
-        echo $_SESSION['email'];
+       // echo $_SESSION['email'];
       ?>
   </h5>
   </div>
