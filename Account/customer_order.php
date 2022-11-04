@@ -14,7 +14,7 @@
         
         $result = mysqli_query($conn, $sql);
 
-        if (mysqli_num_rows($result) > 0) {
+        if ($result) {
             while($row = mysqli_fetch_assoc($result)) {
                 $unreadMsgCount = $row['unreadMsg'];
             }
@@ -60,7 +60,7 @@
 	<title>My Order | Zaara.lk</title>
     
     <!-- title icon -->
-    <link rel="icon" type="image/ico" href="../image/logo.png"/>
+    <link rel="icon" type="image/ico" href="../PHOTO/logo.png"/>
     
     <!-- Bootstrap CSS -->
     <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet">
@@ -117,14 +117,14 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark my-3">
             <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
+                    <li class="nav-item active mx-5">
+                        <a class="nav-link" href="../home.php">Home</a>
+                    </li>
                     <li class="nav-item mx-5">
                         <a class="nav-link" href="customer_account.php">My Account</a>
                     </li>
                     <li class="nav-item active mx-5">
                         <a class="nav-link" href="customer_order.php">My Order</a>
-                    </li>
-                    <li class="nav-item mx-5">
-                        <a class="nav-link" href="customer_customize_order.php">My Customize Order</a>
                     </li>
                     <li class="nav-item mx-5">
                         <a class="nav-link" href="customer_message_center.php">Message Center <span class="badge badge-pill badge-danger"><?php if($unreadMsgCount!=0) echo $unreadMsgCount; ?></span></a>
@@ -151,8 +151,8 @@
                 <?php
                 
                     $i=1;
-                
-                    $query2 = "SELECT * from order_product where customer_id=3";
+                    if(isset($_SESSION['uid'])){
+                    $query2 = "SELECT * from order_product where customer_id=".$_SESSION['uid'];
 
                     $result = $conn->query($query2);
                 
@@ -235,6 +235,7 @@
                 <?php
                             $i++;
                         }
+                    }
                     }
                 
                 ?>

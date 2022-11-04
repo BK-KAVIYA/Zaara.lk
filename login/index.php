@@ -28,10 +28,10 @@
 		$s="SELECT password FROM admin WHERE password=\"".$email."\";";
 		if($q=mysqli_query($conn,$s)){
 	 		$row=mysqli_fetch_array($q);
-	 		//$verify = password_verify($_POST['pass'],$row['password']);
+	 		$verify = password_verify($_POST['pass'],$row['password']);
 			if ($_POST['pass']==$row['password']) {
 				$_SESSION['uname']=$email;
-				//header("location:admin/dashboard.php");
+				header("location:admin/dashboard.php");
 			}
 	 	}
 	 	if($sqll=mysqli_query($conn,$sql)){
@@ -81,15 +81,16 @@
 								})
 									</script>";;
 		}
-			$sql="SELECT id FROM customer WHERE email='".$email."' ";
+			/*$sql="SELECT id FROM customer WHERE email='".$email."' ";
 			$result=mysqli_query($conn,$sql);
 			$rows = mysqli_num_rows($result);
             if ($rows > 0) {
 		 		while($row=mysqli_fetch_array($result)){
 					$_SESSION['uid']=$row['id'];
                $_SESSION['uname']=$row['user_name'];
+               $_SESSION['email']=$row['email'];
 		 		}
-			}
+			}*/
 	 	}
 	
 

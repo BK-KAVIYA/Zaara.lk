@@ -109,10 +109,10 @@
                      <img class="logo-home" src="PHOTO/logooo.png" >
                   </div>
                   <div class="row">
-                     <input type="button" class="btn btn-outline-light btn-blockd m " value="LOGIN" onclick="location.href='login.php'">
+                     <input type="button" class="btn btn-outline-light btn-blockd m " value="LOGIN" onclick="location.href='login/index.php'">
                   </div>
                   <div class="row">
-                     <input type="button" class="btn btn-outline-light btn-blockd " value="JOIN" onclick="location.href='register.php'">
+                     <input type="button" class="btn btn-outline-light btn-blockd " value="JOIN" onclick="location.href='Login_Register/login_&_registration.php'">
                   </div>
                   <p class="text-light p-4 text-justify">Digital Health Private Limited is Sri Lanka’s pioneering digital health solutions service provider, offering medical services to subscribers from the convenience of their mobile phone and website.</p>
                </div>

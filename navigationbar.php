@@ -29,7 +29,7 @@
          <nav class="navbar navbar-expand-lg navbar-dark ">
             <!-- Brand -->
             <b><a class="navbar-brand text-danger" href="#">Zaara.lk</a></b>
-            <img src="PHOTO/logooo.png" class="logo-nav float-right navbar-brand" >
+            <img src="PHOTO/logo.png" class="logo-nav float-right navbar-brand" >
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -57,7 +57,7 @@
                      <a class="nav-link text-uppercase w3-bar-item w3-button w3-padding-large w3-hide-small text-white" href="about.php">Contact us</a>
                   </li>
                </ul>
-               <form class="form-inline sercch-alighnment" style="margin-left:25px;" action="/action_page.php">
+               <form class="form-inline sercch-alighnment" style="margin-left:25px;" action="#">
                   <div class="row" style="flex-wrap: nowrap;">
                      <input class="form-control mr-sm-2" type="text" placeholder="Search">
                      <button class="btn btn-danger" type="submit">Search</button>
@@ -76,7 +76,36 @@
                               Cart</a>
                            </button>
                         </form>
-                     <i class="text-light fa-solid fa-right-from-bracket  ml-2 mr-1"></i><a href="login/index.php"><p class="text-light">Login/Sing UP</p></a>
+                     
+                     <i class="text-light fa-solid fa-right-from-bracket  ml-2 mr-1"></i><p class="text-light">Login/Sing UP</p>
+                     <div class="btn-group dropleft">
+                     <button class="btn btn-sm dropdown-toggle text-danger"  type="button" id="smallNavbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                  <div class="dropdown-menu">
+                    <p class="dropdown-item text-danger"><?php if(isset($_SESSION['uid'])) echo "Welcome back, ".$_SESSION['email']; else echo "Welcome to Zaara.lk"; ?></p>
+                    <div class="dropdown-divider text-danger"></div>
+                    <p class="dropdown-item">
+                        
+                        <?php
+                            if(!isset($_SESSION['uid'])) {
+                        ?>
+                        <a class="btn btn-danger" href="Login_Register/login_&_registration.php">Join</a>
+                        <a class="btn btn-outline-danger" href="login/index.php">Sign in</a>
+                        <?php
+                            }
+                            else {
+                        ?>
+                        <a class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to logout?');"  href="logout.php">Logout</a>
+                        <?php
+                            }
+                        ?>
+                        
+                    </p>
+                    
+                </div>
+            </div>
+
+
                   </ul>
                  <!-- <ul class="navbar-nav ml-4" >
                      <li class="nav-item">
@@ -99,8 +128,7 @@
           }
            function myFunction() {
             if (isset($_SESSION['status'])){
-               echo $_SESSION['status'];
-               //header("location:channel.php");
+              //header("location:Account/customer_account.php");
              }else{
                echo  "<script type=\"text/javascript\">
                          Swal.fire('Login First!!',

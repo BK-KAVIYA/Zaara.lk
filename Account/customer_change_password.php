@@ -7,17 +7,16 @@
     date_default_timezone_set("Asia/Colombo");
     $alert = "";
     $alertStatus = 0;
-
-
     $unreadMsgCount = 0;
+
 
     if(isset($_SESSION['digimart_current_user_id'])){
         
-        $sql = "SELECT COUNT(*) AS 'unreadMsg' FROM `customer_message` WHERE `to` = '{$_SESSION['digimart_current_user_id']}' AND `is_unread` = 1 AND `is_deleted` = 0";
+        $sql = "SELECT COUNT(*) AS 'unreadMsg' FROM `customer_message` WHERE `to` = '{$_SESSION['uid']}' AND `is_unread` = 1 AND `is_deleted` = 0";
         
         $result = mysqli_query($conn, $sql);
 
-        if ($result) {
+        if (mysqli_num_rows($result) > 0) {
             while($row = mysqli_fetch_assoc($result)) {
                 $unreadMsgCount = $row['unreadMsg'];
             }
@@ -26,33 +25,25 @@
 
     if(isset($_POST['btnSubmit'])){
         
-        $firstName = $_POST['firstName'];
-        $lastName = $_POST['lastName'];
+        $currentPwd = $_POST['currentPassword'];
+        $newPwd = $_POST['newPassword'];
         
-        $sql = "UPDATE `customer` SET `first_name`= '{$firstName}', `last_name`= '{$lastName}' WHERE `id` = '{$_SESSION['digimart_current_user_id']}' AND `is_deleted` = 0";
+        $h_currentPwd = md5($currentPwd);
+        $h_newPwd = md5($newPwd);
+        
+        $sql = "SELECT * FROM `customer` WHERE `id` = '{$_SESSION['uid']}' AND `password` = '{$h_currentPwd}'";
         
         $result = mysqli_query($conn, $sql);
-
-        if ($result) {
-            //if data inserted display tooltips message as Successful
-            $alert = "Name changed";
-            $alertStatus = 1;
-        }
-        else {
-            //if data not inserted display tooltips message as Unsuccessful
-            $alert = "Name not changed";
+        if (mysqli_num_rows($result) != 1) {
+            $alert = "Current password is incorrect. Try agin.";
             $alertStatus = 2;
-        }
-        
-        $sql = "SELECT * FROM `customer` WHERE `id` = '{$_SESSION['digimart_current_user_id']}' AND `is_deleted` = 0";
-        
-        $result = mysqli_query($conn, $sql);
-
-        if (mysqli_num_rows($result) > 0) {
-            while($row = mysqli_fetch_assoc($result)) {
-                $_SESSION['digimart_current_user_first_name'] = $row['first_name'];
-                $_SESSION['digimart_current_user_last_name'] = $row['last_name'];
-            }
+        } else {
+            $sql = "UPDATE `customer` SET`password`= '{$h_newPwd}' WHERE `email` = '{$_SESSION['email']}'";
+            
+            mysqli_query($conn, $sql);
+            
+            $alert = "Password changed.";
+            $alertStatus = 1;
         }
     }
 
@@ -62,7 +53,7 @@
 <html>
 <head>
     <!-- title -->
-	<title>My Account | Zaara.lk</title>
+	<title>Change Password | Zaara.lk</title>
     
     <!-- title icon -->
     <link rel="icon" type="image/ico" href="../PHOTO/logo.png"/>
@@ -86,7 +77,7 @@
     <script src="bootstrap.js"></script>
     
     <style>
-
+       
         
         .sidebar {
             width: 200px;
@@ -174,14 +165,42 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
         });
+        
+        function passwordVisible() {
+            var x = document.getElementById("currentPassword");
+            var y = document.getElementById("newPassword");
+            var z = document.getElementById("confirmPassword");
+            
+            if (x.type === "password") {
+                x.type = "text";
+                y.type = "text";
+                z.type = "text";
+            } else {
+                x.type = "password";
+                y.type = "password";
+                z.type = "password";
+            }
+        }
+        
+        $(document).ready(function(){
+            $("#confirmPassword").keyup(function(){
+                if ($("#newPassword").val() != $("#confirmPassword").val()) {
+                    $("#match-msg").html("Password do not match").css("color","red");
+                    $("#btnSubmit").attr('disabled','disabled');
+                }else{
+                    $("#match-msg").html("Password matched").css("color","green");
+                    $("#btnSubmit").removeAttr('disabled');
+                }
+            });
+        });
     </script>
     
     
 </head>
-     
+    
 <body class="bg-dark">
-        
-    <div class="toastNotify bg-dark"> col-7 col-sm-6 col-md-4 col-lg-3" data-autohide="false">
+    
+    <div class="toastNotify bg-dark col-7 col-sm-6 col-md-4 col-lg-3" data-autohide="false">
         <div class="toast-header bg-dark">
             <strong class="mr-auto text-danger"><?php if($alertStatus == 1) echo "Successful !"; else echo "Unsuccessful !"; ?></strong>
             <small class="text-muted"></small>
@@ -192,10 +211,11 @@
             <?php echo $alert; ?>
         </div>
     </div>
-
+    
     
     
     <div class="container-fluide">
+        
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark my-3">
             <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
@@ -220,7 +240,7 @@
     <div class="container">
         <h3 class="text-danger mb-3"><i class="far fa-user-circle"></i> My Account</h3>
         
-        <div class="sidebar shadow-lg d-flex flex-column rounded-lg <?php if(isset($_COOKIE['theme']) && ($_COOKIE['theme']=='dark')) echo "bg-dark"; ?>">
+        <div class="sidebar shadow-lg d-flex flex-column rounded-lg bg-dark">
             <a class="p-3" href="customer_account.php">My Account Setting</a>
             <a class="p-3" href="customer_review.php">My Review</a>
             <a class="p-3" href="customer_mail.php">My Mail Address</a>
@@ -229,54 +249,30 @@
         </div>
         
         <div class="content p-1 mb-5 rounded-lg shadow-lg bg-dark">
-            <h4 class="text-danger mb-3"><i class="fas fa-user-cog"></i> My Account Setting</h4>
+            <h4 class="text-danger mb-3"><i class="fas fa-key"></i> Change Password</h4>
             <div class="row mw-100 p-2" id="product-container">
-            
-            <?php
-
-            if(isset($_SESSION['uid'])){
-       
-                $sql = "SELECT * from customer where id=".$_SESSION['uid'];
-        
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    while($row = mysqli_fetch_assoc($result)) {
-                        $id = $row['id'];
-                        $uname = $row['user_name'];
-                        $telephone = $row['Telephone'];
-                        $email = $row['email'];
-                        $address = $row['address'];
-                        $password = $row['password'];
-                    }
-                }
-             }
-
-             ?>
-
+                
                 <div class="col-12">
                     <div class="col-md-6 col-sm-12">
                         <div class="custom-control custom-checkbox">
-                            <form action="customer_account.php" method="post">
+                            <form action="customer_change_password.php" method="post">
                                 <div class="">
-                                    <div class="form-group">
-                                        <label for="userId" class="text-white">User Id</label>
-                                        <input type="text" class="form-control"  name="userId" id="userId" value="<?php echo $id; ?>" readonly>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" onclick="passwordVisible()" name="mailRadio" id="showPwd">
+                                        <label class="custom-control-label text-white" for="showPwd">Show Password</label>
                                     </div>
                                     <div class="form-group">
-                                        <label for="email" class="text-white">Email</label>
-                                        <input type="email"class="form-control" name="email" id="email" value="<?php echo $email; ?>" readonly>
+                                        <input type="password" class="form-control"  name="currentPassword" id="currentPassword" placeholder="CURRENT PASSWORD *" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="firstName" class="text-white"; >First Name</label>
-                                        <input type="text" class="form-control" name="firstName" id="firstName" value="<?php echo $uname; ?>" required>
+                                        <input type="password" class="form-control" name="newPassword" id="newPassword" placeholder="NEW  PASSWORD *" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="lastName" class="text-white">Address</label>
-                                        <textarea class="form-control" id="addreaa" name="address" rows="3"> <?php echo $address; ?></textarea>
+                                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="CONFIRM NEW  PASSWORD *" required>
+                                        <small id="match-msg"></small>
                                     </div>
                                     <div class="form-group">
-                                        <input type="submit" value="Change Name" class="btn btn-outline-danger paymentInput px-5" id="btnSubmit" name="btnSubmit">
+                                        <input type="submit" value="Change Password" class="btn btn-outline-danger paymentInput px-5" id="btnSubmit" name="btnSubmit" disabled>
                                     </div>
                                 </div>
                             </form>
@@ -294,5 +290,6 @@
         
     </div>
     
+
 </body>
 </html>

@@ -8,6 +8,15 @@
     $alert = "";
     $alertStatus = 0;
 
+    if(isset($_GET['currency'])){
+        setcookie("currency_type", $_GET['currency'], time() + (86400 * 30), "/");
+        header('Location: '.$_SERVER['PHP_SELF']);
+    }
+
+    if(isset($_GET['theme'])){
+        setcookie("theme", $_GET['theme'], time() + (86400 * 30), "/");
+        header('Location: '.$_SERVER['PHP_SELF']);
+    }
 
     $unreadMsgCount = 0;
 
@@ -24,35 +33,30 @@
         }
     }
 
+    if(isset($_GET['remove'])){        
+        $sql = "UPDATE `customer_payment_info` SET `is_deleted`= 1 WHERE `customer_id` = '{$_SESSION['digimart_current_user_id']}'";
+        
+        mysqli_query($conn, $sql);
+        
+        header('Location: customer_payment.php');
+    }
+
     if(isset($_POST['btnSubmit'])){
+        $cardNo = $_POST['cardNo'];
         
-        $firstName = $_POST['firstName'];
-        $lastName = $_POST['lastName'];
-        
-        $sql = "UPDATE `customer` SET `first_name`= '{$firstName}', `last_name`= '{$lastName}' WHERE `id` = '{$_SESSION['digimart_current_user_id']}' AND `is_deleted` = 0";
+        $sql = "UPDATE `customer_payment_info` SET `card_no`= '{$cardNo}' WHERE `customer_id` = '{$_SESSION['digimart_current_user_id']}'";
         
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
-            //if data inserted display tooltips message as Successful
-            $alert = "Name changed";
+            //if data inserted, display tooltips message as Successful
+            $alert = "Payment card updated";
             $alertStatus = 1;
         }
         else {
-            //if data not inserted display tooltips message as Unsuccessful
-            $alert = "Name not changed";
+            //if data not inserted, display tooltips message as Unsuccessful
+            $alert = "Payment card not updated";
             $alertStatus = 2;
-        }
-        
-        $sql = "SELECT * FROM `customer` WHERE `id` = '{$_SESSION['digimart_current_user_id']}' AND `is_deleted` = 0";
-        
-        $result = mysqli_query($conn, $sql);
-
-        if (mysqli_num_rows($result) > 0) {
-            while($row = mysqli_fetch_assoc($result)) {
-                $_SESSION['digimart_current_user_first_name'] = $row['first_name'];
-                $_SESSION['digimart_current_user_last_name'] = $row['last_name'];
-            }
         }
     }
 
@@ -62,7 +66,7 @@
 <html>
 <head>
     <!-- title -->
-	<title>My Account | Zaara.lk</title>
+	<title>My Payment Card | Zaara.lk</title>
     
     <!-- title icon -->
     <link rel="icon" type="image/ico" href="../PHOTO/logo.png"/>
@@ -71,7 +75,7 @@
     <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet">
     
     <!-- CSS -->
-    <link type="text/css" href="navbar.css" rel="stylesheet">
+    <link type="text/css" href="../css/navbar.css" rel="stylesheet">
     
     <!-- google font -->
     <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'>
@@ -86,7 +90,12 @@
     <script src="bootstrap.js"></script>
     
     <style>
-
+    
+        .aboutDescription {
+            background-color: rgba(221,18,60,0.1);
+            font-family: 'Abel';
+            font-size: 20px;
+        }
         
         .sidebar {
             width: 200px;
@@ -178,10 +187,10 @@
     
     
 </head>
-     
+    
 <body class="bg-dark">
-        
-    <div class="toastNotify bg-dark"> col-7 col-sm-6 col-md-4 col-lg-3" data-autohide="false">
+    
+    <div class="toastNotify bg-dark col-7 col-sm-6 col-md-4 col-lg-3" data-autohide="false">
         <div class="toast-header bg-dark">
             <strong class="mr-auto text-danger"><?php if($alertStatus == 1) echo "Successful !"; else echo "Unsuccessful !"; ?></strong>
             <small class="text-muted"></small>
@@ -192,10 +201,10 @@
             <?php echo $alert; ?>
         </div>
     </div>
-
     
     
     <div class="container-fluide">
+        
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark my-3">
             <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
@@ -220,7 +229,7 @@
     <div class="container">
         <h3 class="text-danger mb-3"><i class="far fa-user-circle"></i> My Account</h3>
         
-        <div class="sidebar shadow-lg d-flex flex-column rounded-lg <?php if(isset($_COOKIE['theme']) && ($_COOKIE['theme']=='dark')) echo "bg-dark"; ?>">
+        <div class="sidebar shadow-lg d-flex flex-column rounded-lg bg-dark">
             <a class="p-3" href="customer_account.php">My Account Setting</a>
             <a class="p-3" href="customer_review.php">My Review</a>
             <a class="p-3" href="customer_mail.php">My Mail Address</a>
@@ -228,71 +237,68 @@
             <a class="p-3" href="customer_change_password.php">Change Password</a>
         </div>
         
-        <div class="content p-1 mb-5 rounded-lg shadow-lg bg-dark">
-            <h4 class="text-danger mb-3"><i class="fas fa-user-cog"></i> My Account Setting</h4>
+        <div class="content p-1 mb-5 rounded-lg shadow-lg  bg-dark">
+            <h4 class="text-danger mb-3"><i class="far fa-credit-card"></i> My Payment Card</h4>
             <div class="row mw-100 p-2" id="product-container">
-            
-            <?php
 
-            if(isset($_SESSION['uid'])){
-       
-                $sql = "SELECT * from customer where id=".$_SESSION['uid'];
-        
-                $result = mysqli_query($conn, $sql);
+                <?php
 
-                if (mysqli_num_rows($result) > 0) {
-                    while($row = mysqli_fetch_assoc($result)) {
-                        $id = $row['id'];
-                        $uname = $row['user_name'];
-                        $telephone = $row['Telephone'];
-                        $email = $row['email'];
-                        $address = $row['address'];
-                        $password = $row['password'];
-                    }
-                }
-             }
+                    $flag = 0;
 
-             ?>
+                    $query2 = "SELECT * FROM `customer_payment_info` WHERE `customer_id` = '{$_SESSION['uid']}' AND `is_deleted` = 0";
 
-                <div class="col-12">
-                    <div class="col-md-6 col-sm-12">
-                        <div class="custom-control custom-checkbox">
-                            <form action="customer_account.php" method="post">
-                                <div class="">
-                                    <div class="form-group">
-                                        <label for="userId" class="text-white">User Id</label>
-                                        <input type="text" class="form-control"  name="userId" id="userId" value="<?php echo $id; ?>" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email" class="text-white">Email</label>
-                                        <input type="email"class="form-control" name="email" id="email" value="<?php echo $email; ?>" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="firstName" class="text-white"; >First Name</label>
-                                        <input type="text" class="form-control" name="firstName" id="firstName" value="<?php echo $uname; ?>" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="lastName" class="text-white">Address</label>
-                                        <textarea class="form-control" id="addreaa" name="address" rows="3"> <?php echo $address; ?></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="submit" value="Change Name" class="btn btn-outline-danger paymentInput px-5" id="btnSubmit" name="btnSubmit">
-                                    </div>
+                    $result = $conn->query($query2);
+
+                    while ($row = $result->fetch_assoc()) {
+                        $flag = 1;
+
+                ?>
+
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div class="card border-danger text-white bg-dark">
+                        <div class="card-body text-danger">
+                            <h5 class="card-title" id="bankCardNo"><?php echo $row['card_no']; ?></h5>
+                            <img src="../img/paymentMethod.png" width="100px">
+                        </div>
+                        <div class="card-body d-flex justify-content-end">
+                            <a href="customer_payment.php?remove=1" class=" text-danger" data-toggle="tooltip" data-placement="bottom" title="Remove"><i class="far fa-trash-alt fa-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <?php } ?>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="custom-control custom-checkbox">
+                        <div id="paymentAnotherDiv">
+                            <form action="customer_payment.php" method="post">
+                                <div class="form-group">
+                                    <input type="text" class="form-control paymentInput" maxlength="25" name ="cardName" id="cardName" placeholder="CARD HOLDER NAME *" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control paymentInput" maxlength="20" name ="cardNo" id="cardNo" placeholder="CARD NUMBER *" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control paymentInput" maxlength="5" name ="cardExp" id="cardExp" placeholder="EXPIRES *" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control paymentInput" name ="cardCvv" id="cardCvv" placeholder="CVV *" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="<?php if($flag==1) echo "Change Card"; else echo "Add Card"; ?>" class="btn btn-outline-danger paymentInput px-5" id="btnSubmit" name="btnSubmit">
                                 </div>
                             </form>
-                            
                         </div>
-                    
                     </div>
-                    
                 </div>
-            
+
+
             </div>
-            
         </div>
 
         
     </div>
     
+ 
 </body>
 </html>

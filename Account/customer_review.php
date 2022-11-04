@@ -1,0 +1,229 @@
+<?php
+
+    require_once('../db.php');
+
+    session_start();
+
+    date_default_timezone_set("Asia/Colombo");
+
+    if(isset($_GET['currency'])){
+        setcookie("currency_type", $_GET['currency'], time() + (86400 * 30), "/");
+        header('Location: '.$_SERVER['PHP_SELF']);
+    }
+
+
+    $unreadMsgCount = 0;
+
+    if(isset($_SESSION['uid'])){
+        
+        $sql = "SELECT COUNT(*) AS 'unreadMsg' FROM `customer_message` WHERE `to` = '{$_SESSION['uid']}' AND `is_unread` = 1 AND `is_deleted` = 0";
+        
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_assoc($result)) {
+                $unreadMsgCount = $row['unreadMsg'];
+            }
+        }
+    }
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- title -->
+	<title>My Review | Zaara.lk</title>
+    
+    <!-- title icon -->
+    <link rel="icon" type="image/ico" href="../PHOTO/logo.png"/>
+    
+    <!-- Bootstrap CSS -->
+    <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link type="text/css" href="navbar.css" rel="stylesheet">
+    
+    <!-- google font -->
+    <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Atomic Age' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+    
+    <!-- Fontawesome icons -->
+    <script src="https://kit.fontawesome.com/faf1c6588d.js" crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="bootstrap.js"></script>
+    
+    <style>
+         
+        .aboutDescription {
+            background-color: rgba(221,18,60,0.1);
+            font-family: 'Abel';
+            font-size: 20px;
+        }
+        
+        .sidebar {
+            width: 200px;
+            position: fixed;
+            overflow: auto;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #dd123d;
+        }
+        
+        .sidebar a:hover:not(.active) {
+            background-color: #dd123d;
+            color: white;
+        }
+
+        div.content {
+            margin-left: 220px;
+            min-height: 500px;
+        }
+        
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                margin-bottom: 10px;
+            }
+            
+            .sidebar a {
+                float: left;
+            }
+            
+            div.content {
+                margin-left: 0;
+            }
+        }
+        
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
+        }
+        
+    </style>
+    
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    
+    
+</head>
+    
+<body class="bg-dark">
+    
+    
+    <div class="container-fluide">
+        
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark my-3">
+            <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active mx-5">
+                        <a class="nav-link" href="../home.php">Home</a>
+                    </li>
+                    <li class="nav-item active mx-5">
+                        <a class="nav-link" href="customer_account.php">My Account</a>
+                    </li>
+                    <li class="nav-item mx-5">
+                        <a class="nav-link" href="customer_order.php">My Order</a>
+                    </li>
+                    <li class="nav-item mx-5">
+                        <a class="nav-link" href="customer_message_center.php">Message Center <span class="badge badge-pill badge-danger"><?php if($unreadMsgCount!=0) echo $unreadMsgCount; ?></span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+    </div>
+    
+    <div class="container">
+        <h3 class="text-danger mb-3"><i class="far fa-user-circle"></i> My Account</h3>
+        
+        <div class="sidebar shadow-lg d-flex flex-column rounded-lg bg-dark">
+            <a class="p-3" href="customer_account.php">My Account Setting</a>
+            <a class="p-3" href="customer_review.php">My Review</a>
+            <a class="p-3" href="customer_mail.php">My Mail Address</a>
+            <a class="p-3" href="customer_payment.php">My Payment Card</a>
+            <a class="p-3" href="customer_change_password.php">Change Password</a>
+        </div>
+        
+        <div class="content p-1 mb-5 rounded-lg shadow-lg bg-dark">
+            <h4 class="text-danger mb-3"><i class="far fa-star"></i> My Review</h4>
+            <table class="table table-striped text-white table-dark"; ?>">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Product Details</th>
+                        <th scope="col">Feedback</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <?php
+
+                        $i=1;
+
+                        $query2 = "SELECT * FROM `product_review`, `product` WHERE  `product_id` = `id` AND `customer_id` = '{$_SESSION['uid']}'";
+
+                        $result = $conn->query($query2);
+
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                    ?>
+                    <tr>
+                        <th scope="row"><?php echo $i; ?></th>
+                        <td class="d-flex justify-content-start">
+                            <img src="../admin/upload/product/<?php echo $row['image']; ?>" width="100px;">
+                            <div class="ml-3 d-flex flex-column">
+                                <h6 class=""><?php echo $row['name']; ?></h6>
+                                <a class="text-secondary">Product ID: <b class=""><?php echo $row['product_id']; ?></b></a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex flex-column text-danger">
+                                <h6 class=''>
+                                    <?php
+                                        $rate = $row['review_value'];
+                                        
+                                        for($count=1;$count<6;$count++) {
+                                            if($rate>=$count) {
+                                                echo "<i class='fas fa-star fa-sm'></i>";
+                                            }
+                                            else {
+                                                echo "<i class='far fa-star fa-sm'></i>";
+                                            }
+                                        }
+                                    ?>
+                                </h6>
+                                <h6 class=''><?php echo $row['review_text']; ?></h6>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <?php
+                                $i++;
+                            }
+                        }
+
+                    ?>
+
+                </tbody>
+            </table>
+        </div>
+
+        
+    </div>
+    
+</body>
+</html>
