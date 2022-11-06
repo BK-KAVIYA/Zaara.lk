@@ -15,8 +15,61 @@
       <link rel="stylesheet" href="css/main2.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <title>Mini dress!</title>
+
+      <!--Alert-->
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    </head>
    <body>
+   <?php
+ 
+
+ if(isset($_GET['pid'])){
+	if(isset($_SESSION['uid'])){
+		
+	// echo "Form submitted";
+	//getting the data
+	$pid=$_GET['pid'];
+	$uid=$_SESSION['uid'];
+	$date="2022-10-14 13.02";
+	
+
+	   $sql="INSERT INTO shopping_cart(customer_id,product_id,date_time) VALUES('$uid','$pid','$date')";
+		 $res=mysqli_query($conn,$sql);
+		 echo mysqli_error($conn);
+
+			 if($res){
+				 echo  "<script type=\"text/javascript\">
+				 Swal.fire('Added!!',
+					   'Product is added to the cart',
+					   'success'
+				 )
+			   </script>";
+			
+			 }
+			 else{
+			   echo "<script>
+				 swal({
+				 title: 'Error',
+				 text: 'product didnot add!',
+				 icon: 'warning',
+				 button: 'Ok',
+				 });
+			   </script>";
+			 }
+			 
+	}else{
+		echo  "<script type=\"text/javascript\">
+                         Swal.fire('Login First!!',
+                               'To Use Fhis Feature Please Login',
+                               'info'
+                         )
+                       </script>";
+
+	}
+
+ }
+
+  ?>
         <div class="bg-dark">
                 <?php include 'navigationbar.php'; ?>
         </div>
@@ -47,7 +100,7 @@
                     <ul class="social">
                         <li><a href="productDetail.php?id=<?php echo $row['id']; ?>" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
                         <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li><a href="maxi_dress.php?pid=<?php echo $row['id']; ?>" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
                     </ul>
                     <a class="add-to-cart" href="add_cart.php">Add to cart</a>
                 </div>

@@ -25,8 +25,7 @@
       <title>Zaara.lk</title>
    </head>
    <body>
-      <div>
-         <nav class="navbar navbar-expand-lg navbar-dark ">
+         <nav class="navbar navbar-expand-lg navbar-dark">
             <!-- Brand -->
             <b><a class="navbar-brand text-danger" href="#">Zaara.lk</a></b>
             <img src="PHOTO/logo.png" class="logo-nav float-right navbar-brand" >
@@ -72,54 +71,38 @@
                            </button>
                      <i class="text-light fa-solid fa-cart-shopping  ml-2 mr-1 "></i>
                         <form method="post">
-                        <a href="cart.php"><button class="bg-transparent text-light border-0" name="check1">
+                        <a href="cart.php" class="text-white"><button class="bg-transparent text-light border-0" name="check1">
                               Cart</a>
                            </button>
                         </form>
                   
                      <i class="text-light fa-solid fa-right-from-bracket  ml-3 "></i>
-                     <li class="nav-item">
-                     <div class="dropdown">
-                     <a class="nav-link text-uppercase btn-sm align-top w3-hide-small text-white  dropdown-toggle text-danger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="category">Login/Sing UP</a>
-                     <div class="dropdown-content mr-3">
-                     <p class="dropdown-item text-danger"><?php if(isset($_SESSION['uid'])) echo "Welcome back, ".$_SESSION['email']; else echo "Welcome to Zaara.lk"; ?></p>
-                     <?php
-                            if(!isset($_SESSION['uid'])) {
-                        ?>
-                        <a class="btn btn-danger btn-sm" href="Register/register.php">Join</a>
-                        <a href="login/index.php" class="btn btn-outline-danger btn-sm">Sign in</a>
-                        <?php
-                            }
-                            else {
-                        ?>
-                        <a class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to logout?');"  href="logout.php">Logout</a>
-                        <?php
-                            }
-                        ?>
+                        <li class="nav-item">
+                           <div class="dropdown ">
+                              <a class="nav-link text-uppercase btn-sm align-top w3-hide-small text-white  dropdown-toggle text-danger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="category">Login/Sing UP</a>
+                                 <div class="dropdown-content mr-3 dropdown-menu-dark">
+                                    <p class="dropdown-item text-danger dropstart"><?php if(isset($_SESSION['uid'])) echo "Welcome back, ".$_SESSION['email']; else echo "Welcome to Zaara.lk"; ?></p>
+                                    <?php
+                                          if(!isset($_SESSION['uid'])) {
+                                       ?>
+                                       <a class="btn btn-danger btn-sm" href="Register/register.php">Join</a>
+                                       <a href="login/index.php" class="btn btn-outline-danger btn-sm">Sign in</a>
+                                       <?php
+                                          }
+                                          else {
+                                       ?>
+                                       <a class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to logout?');"  href="logout.php">Logout</a>
+                                       <?php
+                                          }
+                                       ?>
 
-                     </div>
-                     </div>
-                  </li>
-
-
-                     
-            </div>
-
-
-                  </ul>
-                 <!-- <ul class="navbar-nav ml-4" >
-                     <li class="nav-item">
-                        <a class="nav-link text-uppercase btn btn-primary text-dark" href="login.php">Login</a>
-                     </li>
-                     <li class="nav-item ml-3">
-                     
-                        <a class="nav-link text-uppercase btn btn-primary text-dark" href="register.php">Register</a>
-                     </li>
-                  </ul> -->
+                              </div>
+                           </div>
+                        </li>        
+                        </ul>
+                     </div>   
                </div>
-            </div>
          </nav>
-      </div>
       <?php
         //$status=$_SESSION['status'];
        // $uid=$_SESSION['sid'];
@@ -127,7 +110,7 @@
             myFunction();
           }
            function myFunction() {
-            if (isset($_SESSION['status'])){
+            if (isset($_SESSION['uid'])){
                echo "<script>window.location.href='Account/customer_account.php'</script>";
               //header("location:Account/customer_account.php");  
              }else{

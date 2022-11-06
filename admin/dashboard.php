@@ -122,6 +122,11 @@
                         <span class="nav__name">Feedback</span>
                     </a>
 
+                    <a href="message_center.php" class="nav__link" target="myFrame">
+                        <i class='bx bx-chat nav__icon' ></i>
+                        <span class="nav__name">Chat</span>
+                    </a>
+
                     
                 </div>
             </div>

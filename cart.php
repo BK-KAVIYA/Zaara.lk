@@ -254,7 +254,7 @@
                 <h2 class="text-center">You don't have any items in your shopping cart. Let's get shopping!</h2>
 
                 <div class="justify-content-center p-1 d-flex my-5">
-                    <a href="../index.php" class="btn btn-outline-danger px-5">Start shopping</a>
+                    <a href="home.php" class="btn btn-outline-danger px-5">Start shopping</a>
                 </div>
             </div>
 
@@ -311,7 +311,7 @@
                                             <input type="text" id="price<?php echo $row['cartId'] ?>" value="<?php echo $row['price']; ?>" hidden>
                                             <div class="pl-3 form-group row d-flex justify-content-start">
                                                 <label for="qty" class="col-form-label col-form-label-sm text-dark">Quentity </label>
-                                                <input type="number" class="form-control form-control-sm col-3 mx-2 text-dark" id="qty<?php echo $row['cartId'] ?>" min="1" value="<?php echo $_GET['quantity']; ?>" onchange="qtyPrice<?php echo $row['cartId'] ?>()" onkeydown="qtyPrice<?php echo $row['cartId'] ?>()" onkeyup="qtyPrice<?php echo $row['cartId'] ?>()" onselect="qtyPrice<?php echo $row['cartId'] ?>()">
+                                                <input type="number" class="form-control form-control-sm col-3 mx-2 text-dark" id="qty<?php echo $row['cartId'] ?>" min="1" value="<?php if(isset($_GET['quantity'])){ echo $_GET['quantity']; }else{ echo 1;} ?>" onchange="qtyPrice<?php echo $row['cartId'] ?>()" onkeydown="qtyPrice<?php echo $row['cartId'] ?>()" onkeyup="qtyPrice<?php echo $row['cartId'] ?>()" onselect="qtyPrice<?php echo $row['cartId'] ?>()">
                                                 <h5 id="qtyPrice<?php echo $row['cartId'] ?>" class="text-secondary">LKR <?php echo $row['price']; ?></h5>
                                             </div>
                                         </div>
@@ -384,13 +384,13 @@
 
             <!-- quest user cannot use quotation -->
             <div class="justify-content-center mb-2 px-5 text-white">
-                <img src="../image/cart_empty.png" class="img-fluid mx-auto d-block" style="width:20%;">
+                <img src="PHOTO/cart_empty.png" class="img-fluid mx-auto d-block" style="width:20%;">
                 <h2 class="text-center">You don't have any items in your shopping cart.</h2>
                 <h3 class="text-center lead mt-4">Have an account? Sign in to see your items.</h3>
 
                 <div class="justify-content-center p-1 d-flex my-5">
-                    <a href="join.php" class="btn btn-danger px-5 mr-5">Join</a>
-                    <a href="sign_in.php" class="btn btn-outline-danger px-5">Sign In</a>
+                    <a href="login/index.php" class="btn btn-danger px-5 mr-5">Join</a>
+                    <a href="Register/register.php" class="btn btn-outline-danger px-5">Sign In</a>
                 </div>
             </div>
 

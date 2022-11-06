@@ -4,7 +4,7 @@
     session_start();;
 
   
-
+    $date="2022-10-11";
     if(isset($_GET['remove'])) {
 	    
         $sql = "DELETE FROM `shopping_cart` WHERE `customer_id` = '{$_SESSION['uid']}' AND `id` = {$_GET['remove']}";
@@ -51,7 +51,7 @@
 
                 $resultInsert = mysqli_query($conn, $inserQuery);
                 echo mysqli_error($conn);
-                header('Location: Account/customer_order.php');
+               // header('Location: Account/customer_order.php');
 
                 if ($resultInsert) {
                     $deleteQuery = "DELETE FROM `shopping_cart` WHERE `customer_id` = '{$_SESSION['uid']}' AND `product_id` = {$_SESSION['productId'][$i]}";
@@ -65,10 +65,10 @@
                 $i++;
             }
         } else {
-            $inserQuery = "INSERT INTO `order_product`(`customer_id`, `product_id`, `quantity`, `unit_price`) VALUES ('{$_SESSION['uid']}',{$_SESSION['productId']},{$_SESSION['productQty']},{$_SESSION['productPrice']})";
+            $inserQuery = "INSERT INTO `order_product`(`customer_id`, `product_id`, `quantity`, `unit_price`) VALUES ({$_SESSION['uid']},{$_SESSION['productId']},{$_SESSION['productQty']},{$_SESSION['productPrice']});";
 
             $resultInsert = mysqli_query($conn, $inserQuery);
-            echo mysqli_error($conn);
+            header('Location: Account/customer_order.php');
         }
         
         $_SESSION['itemCount'] = null;

@@ -197,6 +197,7 @@
                                        echo "<div class='middle-pr'>";
                                                echo"<p><a href='productDetail.php?id=".$row['id']."'><button>Shop Now</button></a></p>";
                                        echo"</div>";
+                                    
                                        echo"<h2 class='dress-code'>".$row['name']."</h2>";
                                        // echo"<p>".$row['description']."</p>";
                                        echo"<p class='p_tag'>".$row['price']."</p>";

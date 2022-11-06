@@ -4,13 +4,22 @@
 
     session_start();
 
-
+    if(isset($_GET['corder'])){
+        echo "invoke"; 
+        $itemId = $_GET['corder'];
+        echo "invoke";
+        $sql = "UPDATE `order_product` SET `is_canceled`= 1 WHERE `id` = {$itemId}";
+        
+        mysqli_query($conn, $sql);
+        
+        header('Location: customer_order.php');
+    }
 
     $unreadMsgCount = 0;
 
-    if(isset($_SESSION['digimart_current_user_id'])){
-        
-        $sql = "SELECT COUNT(*) AS 'unreadMsg' FROM `customer_message` WHERE `to` = '{$_SESSION['digimart_current_user_id']}' AND `is_unread` = 1 AND `is_deleted` = 0";
+    if(isset($_SESSION['uid'])){
+       
+        $sql = "SELECT COUNT(*) AS 'unreadMsg' FROM `customer_message` WHERE `to` = '{$_SESSION['uid']}' AND `is_unread` = 1 AND `is_deleted` = 0";
         
         $result = mysqli_query($conn, $sql);
 
@@ -21,15 +30,7 @@
         }
     }
 
-    if(isset($_GET['cancelOrder'])){
-        $itemId = $_GET['cancelOrder'];
-        
-        $sql = "UPDATE `order_product` SET `is_canceled`= 1 WHERE `id` = {$itemId}";
-        
-        mysqli_query($conn, $sql);
-        
-        header('Location: customer_order.php');
-    }
+    
         
     if(isset($_GET['receivedOrderId'])){
         $orderId = $_GET['receivedOrderId'];
@@ -206,7 +207,7 @@
                                 } else {
                                     if(date("Y-m-d")==$date){
                                         echo "<a class='text-secondary'>Not yet confirmed</a>";
-                                        echo "<a href='customer_order.php?cancelOrder={$row['id']}' onclick=\"return confirm('Do you want to cancel this order?.');\" class='btn btn-outline-danger btn-sm'>Cancel Order</a>";
+                                        echo "<a href='customer_order.php?removeItem=6' onclick=\"return confirm('Do you want to cancel this order?.');\" class='btn btn-outline-danger btn-sm'>Cancel Order</a>";
                                     } else {
                                         echo "<h6 class=''>Confirmed <i class='far fa-check-circle'></i></h6>";
 
