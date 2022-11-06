@@ -128,7 +128,8 @@
           }
            function myFunction() {
             if (isset($_SESSION['status'])){
-              //header("location:Account/customer_account.php");
+               echo "<script>window.location.href='Account/customer_account.php'</script>";
+              //header("location:Account/customer_account.php");  
              }else{
                echo  "<script type=\"text/javascript\">
                          Swal.fire('Login First!!',

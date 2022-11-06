@@ -28,7 +28,7 @@
 
  if(isset($_POST['add_product'])){
 	if(isset($_SESSION['uid'])){
-   
+		
 	// echo "Form submitted";
 	//getting the data
 	$pid=$_GET['id'];
@@ -38,9 +38,9 @@
 
 	   $sql="INSERT INTO shopping_cart(customer_id,product_id,date_and_time) VALUES('$uid','$pid','$date')";
 		 $res=mysqli_query($conn,$sql);
+		 echo mysqli_error($conn);
 
 			 if($res){
-			  
 				 echo  "<script type=\"text/javascript\">
 				 Swal.fire('Added!!',
 					   'Product is added to the cart',
