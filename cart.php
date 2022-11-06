@@ -5,9 +5,8 @@
 
    
    
-   $_SESSION['uid']=8;
+   //$_SESSION['uid']=8;
  
-
 
     //Remove button submit
     if(isset($_GET['remove'])) {
@@ -312,7 +311,7 @@
                                             <input type="text" id="price<?php echo $row['cartId'] ?>" value="<?php echo $row['price']; ?>" hidden>
                                             <div class="pl-3 form-group row d-flex justify-content-start">
                                                 <label for="qty" class="col-form-label col-form-label-sm text-dark">Quentity </label>
-                                                <input type="number" class="form-control form-control-sm col-3 mx-2 text-dark" id="qty<?php echo $row['cartId'] ?>" min="1" value="1" onchange="qtyPrice<?php echo $row['cartId'] ?>()" onkeydown="qtyPrice<?php echo $row['cartId'] ?>()" onkeyup="qtyPrice<?php echo $row['cartId'] ?>()" onselect="qtyPrice<?php echo $row['cartId'] ?>()">
+                                                <input type="number" class="form-control form-control-sm col-3 mx-2 text-dark" id="qty<?php echo $row['cartId'] ?>" min="1" value="<?php echo $_GET['quantity']; ?>" onchange="qtyPrice<?php echo $row['cartId'] ?>()" onkeydown="qtyPrice<?php echo $row['cartId'] ?>()" onkeyup="qtyPrice<?php echo $row['cartId'] ?>()" onselect="qtyPrice<?php echo $row['cartId'] ?>()">
                                                 <h5 id="qtyPrice<?php echo $row['cartId'] ?>" class="text-secondary">LKR <?php echo $row['price']; ?></h5>
                                             </div>
                                         </div>

@@ -76,33 +76,33 @@
                               Cart</a>
                            </button>
                         </form>
-                     
-                     <i class="text-light fa-solid fa-right-from-bracket  ml-2 mr-1"></i><p class="text-light">Login/Sing UP</p>
-                     <div class="btn-group dropleft">
-                     <button class="btn btn-sm dropdown-toggle text-danger"  type="button" id="smallNavbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                  <div class="dropdown-menu">
-                    <p class="dropdown-item text-danger"><?php if(isset($_SESSION['uid'])) echo "Welcome back, ".$_SESSION['email']; else echo "Welcome to Zaara.lk"; ?></p>
-                    <div class="dropdown-divider text-danger"></div>
-                    <p class="dropdown-item">
-                        
-                        <?php
+                  
+                     <i class="text-light fa-solid fa-right-from-bracket  ml-3 "></i>
+                     <li class="nav-item">
+                     <div class="dropdown">
+                     <a class="nav-link text-uppercase btn-sm align-top w3-hide-small text-white  dropdown-toggle text-danger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="category">Login/Sing UP</a>
+                     <div class="dropdown-content mr-3">
+                     <p class="dropdown-item text-danger"><?php if(isset($_SESSION['uid'])) echo "Welcome back, ".$_SESSION['email']; else echo "Welcome to Zaara.lk"; ?></p>
+                     <?php
                             if(!isset($_SESSION['uid'])) {
                         ?>
-                        <a class="btn btn-danger" href="Login_Register/login_&_registration.php">Join</a>
-                        <a class="btn btn-outline-danger" href="login/index.php">Sign in</a>
+                        <a class="btn btn-danger btn-sm" href="Register/register.php">Join</a>
+                        <a href="login/index.php" class="btn btn-outline-danger btn-sm">Sign in</a>
                         <?php
                             }
                             else {
                         ?>
-                        <a class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to logout?');"  href="logout.php">Logout</a>
+                        <a class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to logout?');"  href="logout.php">Logout</a>
                         <?php
                             }
                         ?>
-                        
-                    </p>
-                    
-                </div>
+
+                     </div>
+                     </div>
+                  </li>
+
+
+                     
             </div>
 
 

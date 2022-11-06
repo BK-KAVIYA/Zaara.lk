@@ -25,14 +25,23 @@
 	if(isset($_POST['login'])){
 		$email = $_POST["email"];
 		$sql="SELECT password FROM customer WHERE email=\"".$email."\";";
-		$s="SELECT password FROM admin WHERE password=\"".$email."\";";
+		$s="SELECT password FROM admin WHERE email=\"".$email."\";";
 		if($q=mysqli_query($conn,$s)){
 	 		$row=mysqli_fetch_array($q);
 	 		$verify = password_verify($_POST['pass'],$row['password']);
-			if ($_POST['pass']==$row['password']) {
+			if ($verify) {
 				$_SESSION['uname']=$email;
-				//header("location:admin/dashboard.php");
-			}
+				header("location:../admin/dashboard.php");
+			}else{
+            echo ".";
+            echo  "<script type=\"text/javascript\">
+                  Swal.fire({
+                     icon: 'error',
+                     title: 'Invalid!',
+                     text: 'username or password!',	  
+                        })
+               </script>";
+      }
 	 	}
 	 	if($sqll=mysqli_query($conn,$sql)){
 	 		$row=mysqli_fetch_array($sqll);
@@ -43,16 +52,17 @@
 					setcookie('password',$pass,time()+60*60*7);
 				}
 				//session_start();
-				$sql="SELECT user_name FROM customer WHERE email=\"".$email."\";";
+				$sql="SELECT id FROM customer WHERE email=\"".$email."\";";
 				$q=mysqli_query($conn,$sql);
 	 			$row=mysqli_fetch_array($q);
-            $_SESSION['user_Id']=$row['id'];
-				$_SESSION['email']=$row['user_name'];
-				$_SESSION['status']=0;
+             $_SESSION['uid']=$row['id'];
+             $_SESSION['uname']=$row['user_name'];
+             $_SESSION['email']=$row['email'];
 				header("location:../home.php");
 
 
  		 	}else{
+               echo ".";
       			echo  "<script type=\"text/javascript\">
 							Swal.fire({
 								icon: 'error',
@@ -81,7 +91,7 @@
 								})
 									</script>";;
 		}
-			$sql="SELECT id FROM customer WHERE email='".$email."' ";
+			/*$sql="SELECT id FROM customer WHERE email='".$email."' ";
 			$result=mysqli_query($conn,$sql);
 			$rows = mysqli_num_rows($result);
             if ($rows > 0) {
@@ -90,7 +100,7 @@
                $_SESSION['uname']=$row['user_name'];
                $_SESSION['email']=$row['email'];
 		 		}
-			}
+			}*/
 	 	}
 	
 

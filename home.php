@@ -106,7 +106,7 @@
             <div class="carousel-inner">
                <div class="bg-dark login-register d-none d-lg-block">
                   <div class="row">
-                     <img class="logo-home" src="PHOTO/logooo.png" >
+                     <img class="logo-home" src="PHOTO/logo.png" >
                   </div>
                   <div class="row">
                      <input type="button" class="btn btn-outline-light btn-blockd m " value="LOGIN" onclick="location.href='login/index.php'">
@@ -150,7 +150,7 @@
       
       <br><br>
       <h2 class="text-center mt-5" style="z-index: 10000;">
-                        <a class="typewrite" data-period="2000" data-type='[ "Hi, Welcome to DigiMart.", "Become a our registered customer.", "Have a great experience." ]'>
+                        <a class="typewrite" data-period="2000" data-type='[ "Hi, Welcome to Zaara.lk.", "Become a our registered customer.", "Have a great experience." ]'>
                             <span class="wrap"></span>
                         </a>
             </h2>

@@ -19,6 +19,30 @@
 	<!--Alert-->
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+	<script>
+            function showSizeDetails(str) {
+				
+                var xhttp;
+                if (str == "") {
+                    document.getElementById("txtHint").innerHTML = "";
+                    return;
+                }
+                
+                xhttp = new XMLHttpRequest();
+                
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("txtHint").innerHTML = this.responseText;
+                        var input = document.getElementById ("sizeInput");
+                        input.max = this.responseText;
+                        input.value = 1;
+                    }
+                };
+                xhttp.open("GET", "productSize.php?size="+str, true);
+                xhttp.send();
+            }
+        </script>
+
   </head>
 
   <body>
@@ -36,7 +60,7 @@
 	$date="2022-10-14 13.02";
 	
 
-	   $sql="INSERT INTO shopping_cart(customer_id,product_id,date_and_time) VALUES('$uid','$pid','$date')";
+	   $sql="INSERT INTO shopping_cart(customer_id,product_id,date_time) VALUES('$uid','$pid','$date')";
 		 $res=mysqli_query($conn,$sql);
 		 echo mysqli_error($conn);
 
@@ -47,7 +71,7 @@
 					   'success'
 				 )
 			   </script>";
-			   header("location:cart.php");
+			   header("location:cart.php?quantity=".$_POST['quantity']);
 			 }
 			 else{
 			   echo "<script>
@@ -90,7 +114,16 @@
                      $res=mysqli_query($conn,$sql);
                
                      $row=mysqli_fetch_assoc($res);
+					
+					 $sql = "SELECT * FROM `stock` WHERE `id` =  '{$_GET['id']}'";
 
+					 $resultSizes = mysqli_query($conn, $sql);
+					 
+					 $sql = "SELECT SUM(`available`) AS 'count' FROM `stock` WHERE `id` =  '{$_GET['id']}'";
+					 
+					 $result = mysqli_query($conn, $sql);
+			 
+					 $rowStockCount = mysqli_fetch_assoc($result);
 				   	}
 
 					 ?>
@@ -141,16 +174,22 @@
 						<h4 class="price">current price: <span><?php echo $row['price']; ?></span></h4>
 						<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
 						<h5 class="sizes">sizes:
-                        <button type="button" class="btn btn-dark">S</button>
+						<?php
+                           while($rowSizes = mysqli_fetch_assoc($resultSizes)) {
+                                echo "<button type='button' name='size' value='{$rowSizes['size']}' onclick='showSizeDetails(this.value)' class='btn btn-outline-danger m-1'>{$rowSizes['size']}</button>";
+                            }
+                        ?>
+                        <!--<button type="button" class="btn btn-dark">S</button>
                         <button type="button" class="btn btn-dark">M</button>
 						<button type="button" class="btn btn-dark">L</button>
-						<button type="button" class="btn btn-dark">XL</button>
+						<button type="button" class="btn btn-dark">XL</button>-->
 						</h5>
 						
 						<div class="action">
-                            <input type="number" id="quantity" name="quantity" min="1" max="10"> <br>
+						<form method="post">
+                            <input type="number" id="quantity" name="quantity" value="1" min="1" max="<?php echo $rowStockCount['count']; ?>" step="1"><?php echo "<font id='txtHint'>  ".$rowStockCount['count']."</font>"; ?> pair available <br>
                             
-							<form method="post"><input class="add-to-cart btn btn-default bg-danger text-white" type="submit" value="Add to cart" name="add_product"></form>
+							<input class="add-to-cart btn btn-default bg-danger text-white" type="submit" value="Add to cart" name="add_product"></form>
 							
 						</div>
 					</div>
