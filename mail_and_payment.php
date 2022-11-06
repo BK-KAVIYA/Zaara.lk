@@ -27,7 +27,7 @@
 
 
     if(isset($_SESSION['uid'])) {
-        $sql = "SELECT count(`customer_id`) AS 'cartCount' FROM `shopping_cart` WHERE `customer_id` = '{$_SESSION['digimart_current_user_id']}'";
+        $sql = "SELECT count(`customer_id`) AS 'cartCount' FROM `shopping_cart` WHERE `customer_id` = '{$_SESSION['uid']}'";
 
         $result = mysqli_query($conn, $sql);
 
@@ -47,9 +47,11 @@
         if(is_array($_SESSION['productId'])) {
             while ($i < $_SESSION['itemCount']) {
 
-                $inserQuery = "INSERT INTO `order_product`(`customer_id`, `product_id`, `quantity`, `unit_price`) VALUES ('{$_SESSION['uid']}',{$_SESSION['productId'][$i]},{$_SESSION['productQty'][$i]},{$_SESSION['productPrice'][$i]})";
+                $inserQuery = "INSERT INTO `order_product`(`customer_id`, `product_id`, `quantity`, `unit_price`) VALUES ('{$_SESSION['uid']}','{$_SESSION['productId'][$i]}','{$_SESSION['productQty'][$i]}','{$_SESSION['productPrice'][$i]}');";
 
                 $resultInsert = mysqli_query($conn, $inserQuery);
+                echo mysqli_error($conn);
+                header('Location: Account/customer_order.php');
 
                 if ($resultInsert) {
                     $deleteQuery = "DELETE FROM `shopping_cart` WHERE `customer_id` = '{$_SESSION['uid']}' AND `product_id` = {$_SESSION['productId'][$i]}";
@@ -66,6 +68,7 @@
             $inserQuery = "INSERT INTO `order_product`(`customer_id`, `product_id`, `quantity`, `unit_price`) VALUES ('{$_SESSION['uid']}',{$_SESSION['productId']},{$_SESSION['productQty']},{$_SESSION['productPrice']})";
 
             $resultInsert = mysqli_query($conn, $inserQuery);
+            echo mysqli_error($conn);
         }
         
         $_SESSION['itemCount'] = null;
@@ -74,7 +77,7 @@
         $_SESSION['productQty'] = null;
         $_SESSION['total'] = null;
         
-        header('Location: customer_order.php');
+        
     }
 
 ?>

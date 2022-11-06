@@ -87,7 +87,7 @@
                   </table>
                 </div>
                             </div>
-              <img src="PHOTO/logooo.png" class="logo-footer">
+              <img src="PHOTO/logo.png" class="logo-footer">
                         </div>
                         <br>
                         
@@ -96,7 +96,7 @@
             </div>
             <div class="footer_bottom">
                         <div class="col-lg-6 col-sm-7">
-                            <p class="mb-0 f_20">© MEDI LANKA 2022 All rights reserved.</p>
+                            <p class="mb-0 f_20">© Zaara.lk 2022 All rights reserved.</p>
                         </div>
             </div>
         </div>

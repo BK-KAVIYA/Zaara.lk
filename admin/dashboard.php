@@ -45,6 +45,8 @@
 <body id="body-pd">
   <?php
           if(isset($_POST['button1'])) {
+            echo "done";
+            header("location:../home.php");
             session_start();
               session_destroy();
               if(isset($_COOKIE['uname']) and isset($_COOKIE['password'])){
@@ -54,8 +56,9 @@
                 unset($_COOKIE['password']);
                 setcookie('uname','',time()-3600);
                 setcookie('password','',time()-3600);
+                
                 }
-                header("location:../home.php");
+                
            }
             ?>
 
@@ -70,7 +73,9 @@
         </form>
         <div class="row">
             <img class="header__img" src="logo/logooo.png">
-            <button value="button1" name="button1" class="btn btn-dark">Log Out</button>
+            <form action="../logout.php" class="form-inline">
+                <input type="submit" value="Log Out"  name="button1" class="btn btn-dark">
+            </form>
         </div> 
     </header>
 
