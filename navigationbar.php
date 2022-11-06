@@ -47,7 +47,7 @@
                      <div class="dropdown">
                      <a class="nav-link text-uppercase w3-bar-item w3-button w3-padding-large w3-hide-small text-white" name="category">Category</a>
                      <div class="dropdown-content">
-                        <a href="max">Max</a>
+                        <a href="maxi_dress.php">Max</a>
                         <a href="mini_dress.php">Min</a>
                         <a href="#">Bags</a>
                      </div>
