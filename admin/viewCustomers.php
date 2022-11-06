@@ -51,7 +51,7 @@ session_start();
          
         <br><br>
         <div  >
-            <?php include('navbar/navigationbarProduct.php') ?>
+            <?php include('navbar/navigationbarCustomer.php') ?>
         </div>
         <br><br>
         <div >

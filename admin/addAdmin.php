@@ -63,7 +63,7 @@ session_start();
        }
    ?>
         <br><br>
-        <?php include('navbar/navigationbarProduct.php') ?>
+        <?php include('navbar/navigationbarAdminpanel.php') ?>
         <div class="container">
             <hr>
             <br>
