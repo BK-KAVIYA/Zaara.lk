@@ -72,7 +72,7 @@ if (mysqli_num_rows($result) > 0) {
         ?>
         <br><br>
         <div>
-            <?php include('navbar/navigationbarProduct.php') ?>
+            <?php include('navbar/navigationbarAdminpanel.php') ?>
         </div>
         <div class="container-fluid img js-fullheight" style="background-image: url(img/background/updateProduct.jpg);  background-size: cover;">
             <br>

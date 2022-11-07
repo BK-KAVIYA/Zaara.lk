@@ -25,7 +25,7 @@ session_start();
     <body class="ml-5">
         <br><br>
         <div  >
-            <?php include('navbar/navigationbarProduct.php') ?>
+            <?php include('navbar/navigationbarAdminpanel.php') ?>
         </div>
         <br><br>
         <div >

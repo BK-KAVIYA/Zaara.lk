@@ -63,7 +63,7 @@ session_start();
        }
    ?>
         <br><br>
-        <?php include('navbar/navigationbarProduct.php') ?>
+        <?php include('navbar/navigationbarAdminpanel.php') ?>
         <div class="container">
             <hr>
             <br>
@@ -115,7 +115,7 @@ session_start();
                     </form>                   
                 </div>
                 <div class="col-md-4 col-lg-4">
-                    <img style="border:none;width: 100%;" src="img/Doctors/adddoc.png">
+                    <img style=" border:none;width: 100%;" src="../PHOTO/login.jpg">
                 </div>
             </div>
         </div>
