@@ -114,27 +114,27 @@
                   <div class="row">
                      <input type="button" class="btn btn-outline-light btn-blockd " value="JOIN" onclick="location.href='Login_Register/login_&_registration.php'">
                   </div>
-                  <p class="text-light p-4 text-justify">Digital Health Private Limited is Sri Lanka’s pioneering digital health solutions service provider, offering medical services to subscribers from the convenience of their mobile phone and website.</p>
+                  <p class="text-light p-4 text-justify">In order to reach customers around Sri Lanka, Zaara introduced an online shopping facility in the year 2022, initially serving clients around the city of Matara.</p>
                </div>
                <div class="carousel-item active">
                   <img class="d-block w-100" src="img/slider/one.jpg" alt="First slide">
                   <div class="carousel-caption">
-                     <h3>Best Doctors</h3>
-                     <p>There are many of Best Doctors are here</p>
+                     <h3>Best Ladies Wear</h3>
+                     <p>There are many of Best Ladies Wear are here</p>
                   </div>
                </div>
                <div class="carousel-item">
                   <img class="d-block w-100" src="img/slider/two.jpg" alt="Second slide">
                   <div class="carousel-caption">
-                     <h3>Best Specialies</h3>
-                     <p>There are many of Best Specialies are here</p>
+                     <h3>Best Ladies Wear</h3>
+                     <p>There are many of Best Ladies Wear are here</p>
                   </div>
                </div>
                <div class="carousel-item">
                   <img class="d-block w-100" src="img/slider/three.jpg" alt="Third slide">
                   <div class="carousel-caption">
-                     <h3>Best Medicines</h3>
-                     <p>There are many of Best Medicines are here</p>
+                     <h3>Best Ladies Wear</h3>
+                     <p>There are many of Best Ladies Wear are here</p>
                   </div>
                </div>
             </div>

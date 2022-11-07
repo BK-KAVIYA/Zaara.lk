@@ -46,7 +46,7 @@ include('../db.php');
             </li>
           </ul>
         </div>
-        <a href="../report/tcpdf_lib/examples/transaction_report_format.php" class="btn-download">
+        <a href="../report/tcpdf_lib/examples/transaction_report_format.php" class="btn-download" target="_blank">
           <i class='bx bxs-cloud-download' ></i>
           <span class="text">Transaction Report</span>
         </a>
@@ -54,10 +54,10 @@ include('../db.php');
       </main>
     </section>
   <div class="flex-column">
-    <img class="justify-content-center" src="img/avatar.png">
+    <img class="justify-content-center ml-3" src="img/avatar.png">
     <h5 class="mt-2">
       <?php session_start();
-       // echo $_SESSION['email'];
+       echo $_SESSION['name'];
       ?>
   </h5>
   </div>

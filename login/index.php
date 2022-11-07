@@ -25,12 +25,14 @@
 	if(isset($_POST['login'])){
 		$email = $_POST["email"];
 		$sql="SELECT password FROM customer WHERE email=\"".$email."\";";
-		$s="SELECT password FROM admin WHERE email=\"".$email."\";";
+		$s="SELECT * FROM admin WHERE email=\"".$email."\";";
 		if($q=mysqli_query($conn,$s)){
 	 		$row=mysqli_fetch_array($q);
 	 		$verify = password_verify($_POST['pass'],$row['password']);
 			if ($verify) {
 				$_SESSION['uname']=$email;
+            $_SESSION['name']=$row['user_name'];
+            $_SESSION['uid']=$row['id'];
 				header("location:../admin/dashboard.php");
 			}else{
             echo ".";
