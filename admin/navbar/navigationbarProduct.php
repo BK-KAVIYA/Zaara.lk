@@ -22,7 +22,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
          
-          <a  style="padding-left:50px;"class="nav-item nav-link" href="../admin/viewDoctor.php">add Product </a>
+          <a  style="padding-left:50px;"class="nav-item nav-link" href="../admin/addProduct.php">add Product </a>
           <a class="nav-item nav-link " href="../admin/viewProduct.php" disabled>product list</a>
       
         </div>
