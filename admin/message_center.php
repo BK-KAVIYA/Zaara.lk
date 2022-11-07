@@ -195,7 +195,7 @@
 <body onload="chatBottomView()">
     
     
-    <div class="container mt-5">
+    <div class="container mt-5 ml-5">
         <h3 class="text-danger"><i class="far fa-comments"></i> Messages</h3>
         <div class="row">
             

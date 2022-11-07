@@ -105,21 +105,22 @@
 
                     <a href="addAdmin.php" class="nav__link" target="myFrame">
                         <i class='bx bx-user-pin nav__icon' ></i>
-                        <span class="nav__name"> Admin Information</span>
-                    </a>
-                    <a href="addProduct.php" class="nav__link" target="myFrame">
-                        <i class='bx bx-package nav__icon'  target="myFrame"></i>
-                        <span class="nav__name"> product Information</span>
+                        <span class="nav__name">Admin Information</span>
                     </a>
 
                     <a href="viewProduct.php" class="nav__link active" target="myFrame"> 
-                    <i class='bx bx-grid-alt nav__icon' ></i>
+                    <i class='bx bx-package nav__icon' ></i>
                         <span class="nav__name">View product</span>
                     </a>
 
                     <a href="feedback.php" class="nav__link" target="myFrame">
                         <i class='bx bx-edit nav__icon' ></i>
                         <span class="nav__name">Feedback</span>
+                    </a>
+
+                    <a href="message_center.php" class="nav__link" target="myFrame">
+                        <i class='bx bx-chat nav__icon' ></i>
+                        <span class="nav__name">Chat</span>
                     </a>
 
                     <a href="admin_account.php" class="nav__link" target="myFrame">
