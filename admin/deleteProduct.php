@@ -87,7 +87,7 @@ if (mysqli_num_rows($result) > 0) {
             <br>
             <br>
             <br>
-            <div class="row">
+            <div style="padding-left:4rem;"class="row">
                 <div class="col-md-6 col-lg-6 ml-3 mb-3" >
                     <form id="AddDoctorForm" class="needs-validation p-5"  method="POST" novalidate>
                         <h2 class="text text-primary" style="text-align: center">Delete Product Details</h2><br>

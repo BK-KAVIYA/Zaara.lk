@@ -74,17 +74,17 @@ if (mysqli_num_rows($result) > 0) {
         ?>
         <br><br>
         <div>
-        <?php include('navbar/navigationbarCustomer.php') ?>
+        <?php include('navbar/navigationbarAdminpanel.php') ?>
         </div>
-        <div class="container-fluid img js-fullheight" style="background-image: url(img/background/updateProduct.jpg);  background-size: cover;">
+        <div class="container-fluid img js-fullheight"  style="background-image: url(img/background/delete.jpg);  background-size: cover;">
             <br>
             <br>
             <br>
             <br>
-            <div class="row">
+            <div style="padding-left:4rem;" class="row">
                 <div class="col-md-6 col-lg-6 ml-3 mb-3" >
                     <form id="AddDoctorForm" class="needs-validation p-5"  method="POST" novalidate>
-                        <h2 class="text text-primary" style="text-align: center">Update Product Details</h2><br>
+                        <h2 class="text text-primary" style="text-align: center">Delete Admin Details</h2><br>
                         <div class="form-row">
 
 
