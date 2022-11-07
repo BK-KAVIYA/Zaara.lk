@@ -105,11 +105,11 @@
 
                     <a href="addAdmin.php" class="nav__link" target="myFrame">
                         <i class='bx bx-plus-medical nav__icon' ></i>
-                        <span class="nav__name">Add Admin</span>
+                        <span class="nav__name"> Admin Information</span>
                     </a>
                     <a href="addProduct.php" class="nav__link" target="myFrame">
                         <i class='bx bx-brightness nav__icon'  target="myFrame"></i>
-                        <span class="nav__name">Add product</span>
+                        <span class="nav__name"> product Information</span>
                     </a>
 
                     <a href="viewProduct.php" class="nav__link active" target="myFrame"> 

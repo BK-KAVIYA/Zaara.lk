@@ -21,10 +21,9 @@
           </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="../admin/"><span class="sr-only">(current)</span></a>
-          <a style="padding-left:20px;" class="nav-item nav-link" href="../admin/addAdmin.php">Add admin</a>
-          <a class="nav-item nav-link " href="../admin/viewAdmin.php" disabled>Admin List</a>
-          
+          <a class="nav-item nav-link active" href="../admin/addAdoctor.php">add admin <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="../admin/viewDoctor.php">admin list </a>
+        
         </div>
      </div>
   </nav>
