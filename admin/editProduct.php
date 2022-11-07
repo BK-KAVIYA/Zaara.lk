@@ -39,11 +39,11 @@ if (mysqli_num_rows($result) > 0) {
     <?php
 
     if(isset($_POST['update'])){
-
         $productname = $_POST['pname'];
         $nprice = $_POST['price'];
         $nquantity = $_POST['quantity'];
         $ncategory = $_POST['category'];
+        echo "done";
         $filename=$_FILES['product_image']['name'];
         $imageFileType=pathinfo($filename,PATHINFO_EXTENSION);
         $extensions_arr = array("jpg","jpeg","png","gif");
@@ -138,7 +138,7 @@ if (mysqli_num_rows($result) > 0) {
                             <div class="col-md-12">
                                 <label for="validationCustom01"><strong>Product Image</strong></label>
                                 <img src='upload/product/<?php echo $image; ?>' width="100px">
-                                <input type="file" name="product_image" id="productImage">
+                                <input type="file" name="product_image" value="1.jpg" id="productImage">
                                 <div class="invalid-feedback">
                                    Upload a relevent picture.
                                 </div>

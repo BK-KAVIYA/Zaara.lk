@@ -220,21 +220,21 @@
     
 <body>
     
-    <div class="toastNotify <?php if(isset($_COOKIE['theme']) && ($_COOKIE['theme']=='dark'))echo "bg-dark"; else echo "bg-white"; ?> col-7 col-sm-6 col-md-4 col-lg-3" data-autohide="false">
-        <div class="toast-header <?php if(isset($_COOKIE['theme']) && ($_COOKIE['theme']=='dark'))echo "bg-dark"; ?>">
+    <div class="toastNotify  col-7 col-sm-6 col-md-4 col-lg-3" data-autohide="false">
+        <div class="toast-header ">
             <strong class="mr-auto text-danger"><?php if($alertStatus == 1) echo "Successful !"; else echo "Unsuccessful !"; ?></strong>
             <small class="text-muted"></small>
             <button type="button" class="ml-2 mb-1 close text-danger" data-dismiss="toast">&times;</button>
         </div>
 
-        <div class="toast-body <?php if(isset($_COOKIE['theme']) && ($_COOKIE['theme']=='dark'))echo "text-white"; ?>">
+        <div class="toast-body ">
             <?php echo $alert; ?>
         </div>
     </div>
     
  
     
-    <div class="container">
+    <div class="container mt-5 ml-5">
         <h3 class="text-danger mb-3"><i class="far fa-user-circle"></i> My Account</h3>
         
         <div class="sidebar shadow-lg d-flex flex-column rounded-lg">

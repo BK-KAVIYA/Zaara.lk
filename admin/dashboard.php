@@ -108,7 +108,7 @@
                         <span class="nav__name">Admin Information</span>
                     </a>
 
-                    <a href="viewProduct.php" class="nav__link active" target="myFrame"> 
+                    <a href="viewProduct.php" class="nav__link" target="myFrame"> 
                     <i class='bx bx-package nav__icon' ></i>
                         <span class="nav__name">View product</span>
                     </a>

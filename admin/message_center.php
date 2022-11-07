@@ -197,9 +197,9 @@
     
     <div class="container mt-5 ml-5">
         <h3 class="text-danger"><i class="far fa-comments"></i> Messages</h3>
-        <div class="row">
+        <div class="row ml-5">
             
-            <div class="msgListArea scrollbar-deep-purple bordered-deep-purple thin py-3 col-3 border border-danger shadow-lg ">
+            <div class="msgListArea scrollbar-deep-purple bordered-deep-purple thin py-3 col-4 border border-danger shadow-lg ">
 
                 <div class="sidebar d-flex flex-column">
                     
