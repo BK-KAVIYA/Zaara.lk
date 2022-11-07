@@ -24,9 +24,12 @@
  * @since 2008-03-04
  */
 
-require_once('../../../connection/connection.php');
+require_once('../../../db.php');
 
 session_start();
+$_SESSION['uid_first_name']="Baladurage";
+$_SESSION['uid_last_name']="Kavinda";
+
 
 date_default_timezone_set("Asia/Colombo");
 
@@ -45,21 +48,21 @@ class pdf extends TCPDF
 	public function Header() {
 		//logo
 		$image_file = K_PATH_IMAGES.'logo.png';
-		$this->Image($image_file, 15, 12, 60, '', 'PNG', '', 'R', false, 300, '', false, false, 0, false, false, false);
+		$this->Image($image_file, 15, 12, 45, '', 'PNG', '', 'R', false, 300, '', false, false, 0, false, false, false);
 
 		//set font
 		$this->Ln(7);
 		$this->SetFont('times', 'B', 14);
 
 		//title
-		$this->Cell(189, 5, 'Team DigiMart (Pvt) Ltd          ', 0, 1, 'R');
+		$this->Cell(189, 5, 'Team Zaara.lk (Pvt) Ltd          ', 0, 1, 'R');
 
 		$this->SetFont('times', '', 10);
-		$this->Cell(189, 3, 'Karagoda, Uyangoda, Kamburupitiya             ', 0, 1, 'R');
+		$this->Cell(189, 3, 'Thalalla North, Kekanadura             ', 0, 1, 'R');
 		$this->Cell(189, 3, '81000 Matara Sri Lanka             ', 0, 1, 'R');
-		$this->Cell(189, 3, 'Phone: +94 77 1637551             ', 0, 1, 'R');
-		$this->Cell(189, 3, 'Fax: +94 11 2345678             ', 0, 1, 'R');
-		$this->Cell(189, 3, 'Email: teamdigimart@gmail.com             ', 0, 1, 'R');
+		$this->Cell(189, 3, 'Phone: +94 78 8311883             ', 0, 1, 'R');
+		$this->Cell(189, 3, 'Fax: +94 41 2345678             ', 0, 1, 'R');
+		$this->Cell(189, 3, 'Email: teamzaara.lk@gmail.com             ', 0, 1, 'R');
 
 		$this->SetFont('helvetica', 'B', 11);
 		$this->Ln(2);
@@ -67,7 +70,7 @@ class pdf extends TCPDF
 
 		date_default_timezone_set("Asia/Colombo");
 		$tDate=date('Y-m-d H:i:s');
-		$clientName=$_SESSION['digimart_current_user_first_name']." ".$_SESSION['digimart_current_user_last_name'];
+		$clientName=$_SESSION['uid_first_name']." ".$_SESSION['uid_last_name'];
 
 		$this->Ln(2);
 		$this->SetFont('Courier', '', 11);
@@ -118,7 +121,7 @@ class pdf extends TCPDF
 		$this->SetFont('Courier', '', 10);
 		$this->Ln(3);
 		$this->Cell(180, 3, '_____________________________________________________________________________________', 0, 1, 'C');
-		$this->Cell(180, 3, ' - Report of monthly transaction from Team DigiMart -', 0, 1, 'C');
+		$this->Cell(180, 3, ' - Report of monthly transaction from zaara.lk -', 0, 1, 'C');
 		$this->Cell(205, 3, 'Page '.$this->getAliasNumPage().' of '.$this->getAliasNbPages(), 0, 1, 'C');
 
 	}
@@ -183,21 +186,22 @@ $pdf->Cell(40, 7, 'Date', 0, 0, 'C', 1);
 $pdf->Cell(45, 7, 'Amount [LKR]', 0, 0, 'C', 1);
 $pdf->Cell(40, 7, 'Status', 0, 1, 'C', 1);
 
-$query2 = "SELECT *, (`unit_price`*`quantity`) AS 'total_price' FROM `order_product` WHERE  (`is_deleted` = 0 OR `is_deleted` = 1) ORDER BY `date_time` ASC";
+$query2 = "SELECT *, (`unit_price`*`quantity`) AS 'total_price' FROM `order_product` WHERE  (`is_deleted` = 0 OR `is_deleted` = 1) ORDER BY `date_and_time` ASC";
 
 $result = $conn->query($query2);
+echo mysqli_error($conn);
 
 while ($row = $result->fetch_assoc()) {
     
     $status = "";
-    $date = date_create($row['date_time']);
+    $date = date_create($row['date_and_time']);
     $date = date_format($date,"Y-m-d");
     
-    if($row['is_received']==1) {
+    if($row['is_recieved']==1) {
         $status = "Received";
     } else if($row['is_posted']==1) {
         $status = "Posted";
-    } else if($row['is_canceled']==1) {
+    } else if($row['is_cancel']==1) {
         $status = "Canceled";
     } else if (date("Y-m-d")!=$date) {
         $status = "Confirmed";
@@ -211,7 +215,7 @@ while ($row = $result->fetch_assoc()) {
     $pdf->Cell(5, 4, $i, 0, 0, 'C');
     $pdf->Cell(25, 4, $row['id'], 0, 0, 'C');
     $pdf->Cell(25, 4, $row['customer_id'], 0, 0, 'C');
-    $pdf->Cell(40, 4, $row['date_time'], 0, 0, 'C');
+    $pdf->Cell(40, 4, $row['date_and_time'], 0, 0, 'C');
     $pdf->Cell(45, 4, number_format($row['total_price'],2), 0, 0, 'R');
     $pdf->Cell(40, 4,  $status, 0, 1, 'R');
     $pdf->Ln(2);

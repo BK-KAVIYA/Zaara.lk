@@ -46,9 +46,9 @@ include('../db.php');
             </li>
           </ul>
         </div>
-        <a href="#" class="btn-download">
+        <a href="../report/tcpdf_lib/examples/transaction_report_format.php" class="btn-download">
           <i class='bx bxs-cloud-download' ></i>
-          <span class="text">Download PDF</span>
+          <span class="text">Transaction Report</span>
         </a>
       </div>
       </main>

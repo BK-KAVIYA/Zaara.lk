@@ -207,7 +207,7 @@
                                 } else {
                                     if(date("Y-m-d")==$date){
                                         echo "<a class='text-secondary'>Not yet confirmed</a>";
-                                        echo "<a href='customer_order.php?removeItem=6' onclick=\"return confirm('Do you want to cancel this order?.');\" class='btn btn-outline-danger btn-sm'>Cancel Order</a>";
+                                        echo "<a href='customer_order.php?corder=6' onclick=\"return confirm('Do you want to cancel this order?.');\" class='btn btn-outline-danger btn-sm'>Cancel Order</a>";
                                     } else {
                                         echo "<h6 class=''>Confirmed <i class='far fa-check-circle'></i></h6>";
 
