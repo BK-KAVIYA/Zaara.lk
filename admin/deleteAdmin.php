@@ -7,14 +7,13 @@ session_start();
 <?php
 
 $submit_id = $_REQUEST['id'];
-$sql = "SELECT * from customer  WHERE id ='" . $submit_id . "';";
+$sql = "SELECT * from admin  WHERE id ='" . $submit_id . "';";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $pname=$row['user_name'];
         $tel=$row['Telephone'];
         $email=$row['email'];
-        $add=$row['address'];
         $pass=$row['password'];
 
     }
@@ -45,8 +44,8 @@ if (mysqli_num_rows($result) > 0) {
         
 
             $submit_id = $_REQUEST['id'];
-            $sql = "DELETE FROM Customer WHERE id ='" . $submit_id . "';";
-            header('Location: viewCustomers.php');
+            $sql = "DELETE FROM admin WHERE id ='" . $submit_id . "';";
+            header('Location: viewAdmin.php');
 
             
             if ($conn->query($sql) === TRUE) {
@@ -114,14 +113,6 @@ if (mysqli_num_rows($result) > 0) {
                                 </div>
                             </div>
 
-
-                            <div class="col-md-8 mb-3">
-                                <label for="validationCustom01"><strong> address</strong></label>
-                                <input type="text" class="form-control" name="address" id="validationCustom01" placeholder="address" value="<?php echo $add; ?>" required>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
 
 
                             <div class="col-md-8 mb-3">
