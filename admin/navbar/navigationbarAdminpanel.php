@@ -20,7 +20,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+        <div style="padding-left:1.5rem;padding-right:1rem;" class="navbar-nav">
           <a class="nav-item nav-link active" href="../admin/addAdmin.php">add admin <span class="sr-only">(current)</span></a>
           <a class="nav-item nav-link" href="../admin/viewAdmin.php">admin list </a>
         
