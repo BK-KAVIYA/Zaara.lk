@@ -34,13 +34,15 @@
         $sql = "SELECT * FROM `customer` WHERE `id` = '{$_SESSION['uid']}' AND `password` = '{$h_currentPwd}'";
         
         $result = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($result) != 1) {
+        
+        if (!$result) {
             $alert = "Current password is incorrect. Try agin.";
             $alertStatus = 2;
         } else {
-            $sql = "UPDATE `customer` SET`password`= '{$h_newPwd}' WHERE `email` = '{$_SESSION['email']}'";
+            $sql = "UPDATE `customer` SET`password`= '{$h_newPwd}' WHERE `id` = '{$_SESSION['email']}'";
             
             mysqli_query($conn, $sql);
+            
             
             $alert = "Password changed.";
             $alertStatus = 1;

@@ -22,7 +22,7 @@
 
     if(isset($_SESSION['digimart_current_user_id'])){
         
-        $sql = "SELECT COUNT(*) AS 'unreadMsg' FROM `customer_message` WHERE `to` = '{$_SESSION['digimart_current_user_id']}' AND `is_unread` = 1 AND `is_deleted` = 0";
+        $sql = "SELECT COUNT(*) AS 'unreadMsg' FROM `customer_message` WHERE `to` = '{$_SESSION['uid']}' AND `is_unread` = 1 AND `is_deleted` = 0";
         
         $result = mysqli_query($conn, $sql);
 
@@ -34,7 +34,7 @@
     }
 
     if(isset($_GET['remove'])){        
-        $sql = "UPDATE `customer_payment_info` SET `is_deleted`= 1 WHERE `customer_id` = '{$_SESSION['digimart_current_user_id']}'";
+        $sql = "UPDATE `customer_payment_info` SET `is_deleted`= 1 WHERE `customer_id` = '{$_SESSION['uid']}'";
         
         mysqli_query($conn, $sql);
         
@@ -44,7 +44,7 @@
     if(isset($_POST['btnSubmit'])){
         $cardNo = $_POST['cardNo'];
         
-        $sql = "UPDATE `customer_payment_info` SET `card_no`= '{$cardNo}' WHERE `customer_id` = '{$_SESSION['digimart_current_user_id']}'";
+        $sql = "UPDATE `customer_payment_info` SET `card_no`= '{$cardNo}' WHERE `customer_id` = '{$_SESSION['uid']}'";
         
         $result = mysqli_query($conn, $sql);
 

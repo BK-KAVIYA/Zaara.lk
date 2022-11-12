@@ -11,25 +11,13 @@
 
     $unreadMsgCount = 0;
 
-    if(isset($_SESSION['digimart_current_user_id'])){
-        
-        $sql = "SELECT COUNT(*) AS 'unreadMsg' FROM `customer_message` WHERE `to` = '{$_SESSION['digimart_current_user_id']}' AND `is_unread` = 1 AND `is_deleted` = 0";
-        
-        $result = mysqli_query($conn, $sql);
-
-        if ($result) {
-            while($row = mysqli_fetch_assoc($result)) {
-                $unreadMsgCount = $row['unreadMsg'];
-            }
-        }
-    }
 
     if(isset($_POST['btnSubmit'])){
         
         $firstName = $_POST['firstName'];
-        $lastName = $_POST['lastName'];
+
         
-        $sql = "UPDATE `customer` SET `first_name`= '{$firstName}', `last_name`= '{$lastName}' WHERE `id` = '{$_SESSION['digimart_current_user_id']}' AND `is_deleted` = 0";
+        $sql = "UPDATE `customer` SET `user_name`= '{$firstName}' WHERE `id` = '{$_SESSION['uid']}'";
         
         $result = mysqli_query($conn, $sql);
 
@@ -44,14 +32,13 @@
             $alertStatus = 2;
         }
         
-        $sql = "SELECT * FROM `customer` WHERE `id` = '{$_SESSION['digimart_current_user_id']}' AND `is_deleted` = 0";
+        $sql = "SELECT * FROM `customer` WHERE `id` = '{$_SESSION['uid']}'";
         
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
             while($row = mysqli_fetch_assoc($result)) {
-                $_SESSION['digimart_current_user_first_name'] = $row['first_name'];
-                $_SESSION['digimart_current_user_last_name'] = $row['last_name'];
+                $_SESSION['name'] = $row['user_name'];
             }
         }
     }

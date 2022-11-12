@@ -49,10 +49,10 @@ if (mysqli_num_rows($result) > 0) {
         
 
        
-            $sql = "UPDATE admin SET user_name='" . $upname . "',Telephone='" . $utel . "',email='" . $uemail ."',address='" . $upass ."',password='" . $upass ."' WHERE id='" . $submit_id . "'";
+            $sql = "UPDATE customer SET user_name='" . $upname . "',Telephone='" . $utel . "',email='" . $uemail ."',address='" . $uadd ."',password='" . $upass ."' WHERE id='" . $submit_id . "'";
             
             if ($conn->query($sql) === TRUE) {
-                echo "Error updating record:1 " . $conn->error;
+
                 echo  "<script type=\"text/javascript\">
                         Swal.fire('Updated!!',
                           'Product details are updated',
@@ -60,7 +60,7 @@ if (mysqli_num_rows($result) > 0) {
                     )
                   </script>";
             } else {
-                echo "Error updating record: " . $conn->error;
+
                 echo "<script>
                     swal({
                     title: 'Error',
