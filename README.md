@@ -47,7 +47,7 @@ Here are some screenshots of the Zaara.lk online shopping platform:
 ![Screenshot 3](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/New_Arival_product_in_home_page.jpg)
 *Newly Arival Product* 
 
-![Screenshot 4](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/product_details_page.jpg)
+![Screenshot 4](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/product_details_page.jpg) <br>
 *Product Details Page* 
 
 ![Screenshot 5](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/shopping_cart.jpg)
@@ -59,7 +59,7 @@ Here are some screenshots of the Zaara.lk online shopping platform:
 ![Screenshot 7](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/My_Orders.jpg)
 *Customer Orders* 
 
-![Screenshot 8](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/Transaction_report.jpg)
+![Screenshot 8](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/Transaction_report.jpg) <br>
 *Transaction Information* 
 
 ## Installation and Setup
@@ -98,10 +98,8 @@ We welcome contributions to enhance the Zaara.lk online shopping platform. If yo
 
 If you have any questions, feedback, or suggestions, please don't hesitate to contact us:
 
-- Email: contact@zaara.lk
-- Website: [www.zaara.lk](https://www.zaara.lk)
-- Twitter: [@ZaaraLK](https://twitter.com/ZaaraLK)
-- Facebook: [ZaaraLK](https://www.facebook.com/ZaaraLK)
+- Email: dilshankavinda@gmail.com
+- Linkedin: [Baladurage Kavinda](www.linkedin.com/in/baladurage-kavinda)
 
 ## License
 
