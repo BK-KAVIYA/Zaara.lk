@@ -38,14 +38,29 @@ At Zaara.lk, we believe that an aesthetically pleasing and user-friendly interfa
 
 Here are some screenshots of the Zaara.lk online shopping platform:
 
-![Screenshot 1](https://example.com/path-to-screenshot-1.png)
-*Caption for Screenshot 1*
+![Screenshot 1](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/login_page.jpg)
+*Login Page*
 
-![Screenshot 2](https://example.com/path-to-screenshot-2.png)
-*Caption for Screenshot 2*
+![Screenshot 2](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/navigation%20bar%20and%20slider.jpg)
+*Customer Dashboard*
 
-![Screenshot 3](https://example.com/path-to-screenshot-3.png)
-*Caption for Screenshot 3* 
+![Screenshot 3](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/New_Arival_product_in_home_page.jpg)
+*Newly Arival Product* 
+
+![Screenshot 4](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/product_details_page.jpg)
+*Product Details Page* 
+
+![Screenshot 5](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/shopping_cart.jpg)
+*Newly Arival Product* 
+
+![Screenshot 6](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/customer_mail_info.jpg)
+*Customer Mail Information* 
+
+![Screenshot 7](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/My_Orders.jpg)
+*Customer Orders* 
+
+![Screenshot 8](https://github.com/BK-KAVIYA/Zaara.lk/blob/main/UI/Transaction_report.jpg)
+*Transaction Information* 
 
 ## Installation and Setup
 
