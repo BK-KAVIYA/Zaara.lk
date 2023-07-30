@@ -1,6 +1,6 @@
 # Zaara.lk - Online Shopping Platform
 
-![Zaara.lk Logo](https://example.com/path-to-logo.png)
+<img src="https://github.com/BK-KAVIYA/Zaara.lk/blob/main/PHOTO/logo/zara.png" alt="Zaara.lk Logo" style="width: 30%;">
 
 Welcome to Zaara.lk, your ultimate destination for unique and stylish clothing and accessories! This is the GitHub repository for the Zaara.lk online shopping platform, developed using PHP for the backend, HTML/CSS for the frontend, and powered by a MySQL database.
 
@@ -19,6 +19,33 @@ Zara Clothing Store is a visionary start-up retail establishment that caters to 
 - Search functionality to quickly find specific products.
 - Wishlist feature for saving favorite items to purchase later.
 - Responsive design for a smooth shopping experience on different devices.
+
+## UI Design
+
+At Zaara.lk, we believe that an aesthetically pleasing and user-friendly interface is crucial to providing an excellent online shopping experience. Our UI design is focused on the following principles:
+
+- **Simplicity**: We have designed a clean and clutter-free interface, ensuring that customers can easily find what they are looking for without unnecessary distractions.
+
+- **Visual Appeal**: The use of attractive visuals, including high-quality product images and a visually appealing color scheme, enhances the overall shopping experience.
+
+- **Intuitive Navigation**: Our intuitive navigation system makes it easy for customers to browse through different categories and find their desired products quickly.
+
+- **Responsiveness**: The platform's responsive design ensures that users can access Zaara.lk on various devices, including desktops, tablets, and smartphones, without compromising usability.
+
+- **Accessibility**: We have taken measures to ensure that our platform is accessible to all users, including those with disabilities, by following accessibility best practices.
+
+## Screenshots
+
+Here are some screenshots of the Zaara.lk online shopping platform:
+
+![Screenshot 1](https://example.com/path-to-screenshot-1.png)
+*Caption for Screenshot 1*
+
+![Screenshot 2](https://example.com/path-to-screenshot-2.png)
+*Caption for Screenshot 2*
+
+![Screenshot 3](https://example.com/path-to-screenshot-3.png)
+*Caption for Screenshot 3* 
 
 ## Installation and Setup
 
